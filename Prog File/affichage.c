@@ -2,11 +2,11 @@
 #include "structure.h"
 
 
-void afficher(Case tab[][], int taille) // Prend une matrice carree et l'affiche
+void afficher(struct Case tab[][], int taille) // Prend une matrice carree et l'affiche
 {
     for (int i = 0; i < taille; i++)
     {
-        for (int j = 0, j < taille; j++)
+        for (int j = 0; j < taille; j++)
         {
             if (tab[i][j].puc==NULL && tab[i][j].cocci==NULL)
             {
@@ -17,7 +17,7 @@ void afficher(Case tab[][], int taille) // Prend une matrice carree et l'affiche
                     break;
 
                     case 2:
-                    case 3;
+                    case 3:
                     case 4:
                     printf("o");
                     break;

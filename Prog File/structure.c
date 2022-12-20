@@ -1,6 +1,6 @@
 #include "structure.h"
 
-struct Coordonnee
+struct Coordonee
 {
     int x;
     int y;
@@ -8,14 +8,14 @@ struct Coordonnee
 
 struct Case
 {
-    Puceron *puc = NULL;
-    Coccinelle *cocci = NULL;
-    int etatTomate = 5; // initialise la tomate comme mature
+    struct Puceron *puc;
+    struct Coccinelle *cocci;
+    int etatTomate; // 
 };
 
 struct Puceron
 {
-    Coordonee coord;
+    struct Coordonee coord;
     int age;
     int nourriConse; // Nombre de tours consécutifs où le puceron a mangé
     int indice;
@@ -23,7 +23,7 @@ struct Puceron
 
 struct Coccinelle
 {
-    Coordonee coord;
+    struct Coordonee coord;
     int age;
     int puceronConso; // Nombre de pucerons mangés
     int indice;

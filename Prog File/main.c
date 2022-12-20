@@ -6,7 +6,7 @@
 
 int main()
 {
-    Case potager[N][N];
+    struct Case potager[N][N];
     afficher(potager,N);
 
 }
