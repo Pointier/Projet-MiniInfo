@@ -1,7 +1,8 @@
-# ifndef HEADER_AFFICHAGE
-# define HEADER_AFFICHAGE
+#ifndef HEADER_AFFICHAGE
+#define HEADER_AFFICHAGE
 #include "initialisation.h"
-#include "structure.h"
 
-void afficher(Case tab[][], int taille);
-# endif
+
+void afficher(Case tab[N][N], int taille);
+
+#endif

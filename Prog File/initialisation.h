@@ -2,4 +2,6 @@
 # define HEADER_INITIALISATION
 #include "structure.h"
 
-# endif
+void initialisationCase(Case tab[N][N], int taille);
+
+# endif 
