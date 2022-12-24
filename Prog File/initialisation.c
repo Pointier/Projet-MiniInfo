@@ -1,6 +1,5 @@
 #include "initialisation.h"
 
-
 void initialisationCase(Case tab[N][N], int taille)
 {
     printf("init\n");

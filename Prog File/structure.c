@@ -1,29 +1,6 @@
 #include "structure.h"
 
-
-
-struct Coordonee
-{
-    int x;
-    int y;
-};
-
-struct Case
-{
-    Puceron *puc;
-    Coccinelle *cocci;
-    int etatTomate; // Indique
-};
-
-struct Puceron
-{
-    Coordonee coord; // Position dans le tableau 2D de case
-    int age;         // Si atteint 10, le puceron meurt
-    int nourriConse; // Nombre de tours consécutifs où le puceron a mangé
-    int index;       // Indique la position du puceron dans la structure ...
-};
-
-void creationPuc(Puceron *puc)
+void initPuc(Puceron *puc)
 {
     puc->coord.x = -1;
     puc->coord.y = -1;
@@ -37,27 +14,26 @@ void vieillissementPuc(Puceron *puc)
     puc->age++;
 }
 
-struct EnsemblePuc
+void creaEnsPuc(EnsemblePuc *ensP)
 {
-    Puceron *tab[N];
-    int card; // Indique le nombre de puceron dans le tableau
-};
-
-void creaEnsPuc(EnsemblePuc *EnsP)
-{
-    EnsP->card=0;
+    ensP->card = 0;
 }
 
-void ajoutPuc(EnsemblePuc *EnsP, Puceron *puc)
+void ajoutPuc(EnsemblePuc *ensP, Puceron *puc)
 {
-    EnsP->tab[EnsP->card] = puc;
-    EnsP->card++;
+    ensP->tab[ensP->card] = puc;
+    puc->index = ensP->card;
+    ensP->card++;
 }
-
-struct Coccinelle
+void mortPuc(EnsemblePuc *ensP, Puceron *puc)
 {
-    Coordonee coord;  // Position dans le tableau 2D de case
-    int age;          // Si atteint 20, la coccinelle meurt
-    int puceronConso; // Nombre de pucerons mangés
-    int index;        // Indique la position de la coccinelle dans la structure ...
-};
+    if (ensP->card > 1)
+    {
+        ensP->tab[puc->index] = ensP->tab[ensP->card - 1]; // On remplace la puce morte par le dernier puceron du tableau
+        ensP->tab[ensP->card - 1]->index = puc->index;     // On met a jour l'index du puceron déplacé
+        ensP->card = ensP->card - 1;                       // On met a jour le cardinal
+    }
+    puc->index = -1;
+    puc->coord.x = -1; // On supprime le puceron de la grille
+    puc->coord.y = -1;
+}
