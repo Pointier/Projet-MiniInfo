@@ -18,7 +18,7 @@ typedef struct
 } Puceron;
 
 void initPuc(Puceron *puc);
-void mangeTom(Puceron *puc, Case tab[N][N]);
+
 
 typedef struct
 {
@@ -51,4 +51,5 @@ typedef struct
     int etatTomate; // Indique
 } Case;
 
+void mangeTom(Puceron *puc, Case tab[N][N]);
 #endif

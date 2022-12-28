@@ -19,10 +19,14 @@ int main()
     ajoutPuc(&testEnsP, &pussy);
     ajoutPuc(&testEnsP, &fuzzy);
     
+    
     potager[5][5].puc=&pussy;
-    printf("Etat tomate : \d", potager[5][5].etatTomate);
-    mangeTom(&pussy,potager);
-     printf("Etat tomate : \d", potager[5][5].etatTomate);
+    pussy.coord.x=5;
+    pussy.coord.y=5;
+    printf("Posi pussy : %d %d \n",pussy.coord.x,pussy.coord.y);
+    printf("Etat tomate : %d\n", potager[5][5].etatTomate);
+    mangeTom(&pussy, potager);
+    printf("Etat tomate : %d\n", potager[5][5].etatTomate);
     
     afficher(potager, N);
 

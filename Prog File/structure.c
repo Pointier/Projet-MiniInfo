@@ -12,10 +12,11 @@ void initPuc(Puceron *puc)
 
 void mangeTom(Puceron *puc, Case tab[N][N])
 {
-    
+    printf("Etat tomate fct : %d\n", tab[puc->coord.x][puc->coord.y].etatTomate);
     if (tab[puc->coord.x][puc->coord.y].etatTomate==5)
     {
         tab[puc->coord.x][puc->coord.y].etatTomate=1;
+        printf("Etat tomate fct : %d\n", tab[puc->coord.x][puc->coord.y].etatTomate);
         puc->nourriConse++;
     }
 }
