@@ -18,7 +18,7 @@ typedef struct
 } Puceron;
 
 void initPuc(Puceron *puc);
-void vieillissementPuc(Puceron *puc);
+void mangeTom(Puceron *puc, Case tab[][]);
 
 typedef struct
 {
@@ -28,6 +28,7 @@ typedef struct
 
 void creaEnsPuc(EnsemblePuc *ensP);
 void ajoutPuc(EnsemblePuc *ensP, Puceron *puc);
+void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc);
 void mortPuc(EnsemblePuc *ensP, Puceron *puc);
 
 typedef struct

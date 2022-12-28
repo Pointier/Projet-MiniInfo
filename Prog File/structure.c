@@ -9,9 +9,23 @@ void initPuc(Puceron *puc)
     puc->index = -1;
 }
 
-void vieillissementPuc(Puceron *puc)
+
+void mangeTom(Puceron *puc, Case tab[N][N])
+{
+    
+    if (tab[puc->coord.x][puc->coord.y].etatTomate==5)
+    {
+        tab[puc->coord.x][puc->coord.y].etatTomate=1;
+        puc->nourriConse++;
+    }
+}
+
+void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc)
 {
     puc->age++;
+    if(puc->age>=10)
+    mortPuc(ensP, puc);
+
 }
 
 void creaEnsPuc(EnsemblePuc *ensP)
