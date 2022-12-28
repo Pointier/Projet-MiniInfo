@@ -18,13 +18,12 @@ int main()
 
     ajoutPuc(&testEnsP, &pussy);
     ajoutPuc(&testEnsP, &fuzzy);
-    printf("%d\n", testEnsP.tab[0]->age);
-    vieillissementPuc(&pussy);
-    printf("%d\n", testEnsP.tab[0]->age);
-    // potager[5][5].puc=&pussy;
-    printf("index fuzzy : %d\n", fuzzy.index);
-    mortPuc(&testEnsP, &pussy);
-    printf("index fuzzy : %d\n", fuzzy.index);
+    
+    potager[5][5].puc=&pussy;
+    printf("Etat tomate : \d", potager[5][5].etatTomate);
+    mangeTom(&pussy,potager);
+     printf("Etat tomate : \d", potager[5][5].etatTomate);
+    
     afficher(potager, N);
 
     printf("end main\n");
