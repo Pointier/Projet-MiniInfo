@@ -52,4 +52,5 @@ typedef struct
 } Case;
 
 void mangeTom(Puceron *puc, Case tab[N][N]);
+void placementPuc(Puceron *puc, Coordonee coord);
 #endif

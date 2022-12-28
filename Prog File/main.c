@@ -21,8 +21,9 @@ int main()
     
     
     potager[5][5].puc=&pussy;
-    pussy.coord.x=5;
-    pussy.coord.y=5;
+    Coordonee mil={5,5};
+    placementPuc(&pussy,mil);
+
     printf("Posi pussy : %d %d \n",pussy.coord.x,pussy.coord.y);
     printf("Etat tomate : %d\n", potager[5][5].etatTomate);
     mangeTom(&pussy, potager);

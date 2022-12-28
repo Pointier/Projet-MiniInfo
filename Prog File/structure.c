@@ -9,6 +9,12 @@ void initPuc(Puceron *puc)
     puc->index = -1;
 }
 
+void placementPuc(Puceron *puc, Coordonee coord)
+{
+    puc->coord.x=coord.x;
+    puc->coord.y=coord.y;
+}
+
 
 void mangeTom(Puceron *puc, Case tab[N][N])
 {
