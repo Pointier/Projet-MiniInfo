@@ -10,20 +10,13 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
             if (tab[i][j].puc == NULL && tab[i][j].cocci == NULL)
             {
                 printf("\033[1;37m");
-                switch (tab[i][j].etatTomate)
-                {
-                case 1:
-                    printf(".");
-                    break;
 
-                case 2:
-                case 3:
-                case 4:
-                    printf("o");
-                    break;
-                case 5:
-                    printf("O");
-                }
+                if(tab[i][j].etatTomate>=1 && tab[i][j].etatTomate<=4)
+                printf(".");
+                else if (tab[i][j].etatTomate>=5 && tab[i][j].etatTomate<=19)
+                printf("o");
+                else if (tab[i][j].etatTomate==20)
+                printf("O");
             }
             else if (tab[i][j].puc != NULL || tab[i][j].cocci != NULL)
             {

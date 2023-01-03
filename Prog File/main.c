@@ -4,6 +4,9 @@
 
 int main()
 {
+    time_t t;
+    /* Initializes random number generator*/
+    srand((unsigned) time(&t));
     printf("start main\n");
     Case potager[N][N];
 

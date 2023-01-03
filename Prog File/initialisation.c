@@ -7,7 +7,7 @@ void initialisationCase(Case tab[N][N], int taille)
     {
         for (int j = 0; j < taille; j++)
         {
-            tab[i][j].etatTomate = 5;
+            tab[i][j].etatTomate = 20;
             tab[i][j].puc = NULL;
             tab[i][j].cocci = NULL;
         }

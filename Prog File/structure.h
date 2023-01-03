@@ -1,6 +1,8 @@
 #ifndef HEADER_STRUCTURE
 #define HEADER_STRUCTURE
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 #define N 10
 
 typedef struct
@@ -12,6 +14,7 @@ typedef struct
 typedef struct
 {
     Coordonee coord; // Position dans le tableau 2D de case
+    Coordonee precCoord; // Indique les coordonnées du tour précédent
     int age;         // Si atteint 10, le puceron meurt
     int nourriConse; // Nombre de tours consécutifs où le puceron a mangé
     int index;       // Indique la position du puceron dans la structure ...
@@ -53,4 +56,9 @@ typedef struct
 
 void mangeTom(Puceron *puc, Case tab[N][N]);
 void placementPuc(Puceron *puc, Coordonee coord);
+void deplacementPuc(Puceron *puc, Case tab[N][N]);
+Coordonee directionPuc(Puceron *puc);
+bool presenceTom(Coordonee coord, Case tab[N][N]);
+Coordonee selectRandTom(Puceron *puc, Case tab[N][N]);
+
 #endif

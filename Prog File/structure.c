@@ -4,6 +4,8 @@ void initPuc(Puceron *puc)
 {
     puc->coord.x = -1;
     puc->coord.y = -1;
+    puc->precCoord.x = -1;
+    puc->precCoord.y = -1;
     puc->age = 0;
     puc->nourriConse = 0;
     puc->index = -1;
@@ -15,11 +17,52 @@ void placementPuc(Puceron *puc, Coordonee coord)
     puc->coord.y=coord.y;
 }
 
+Coordonee directionPuc(Puceron *puc)
+{
+    Coordonee dir;
+    dir.x=puc->coord.x-puc->precCoord.x;
+    dir.y=puc->coord.y-puc->precCoord.y;
+    return dir;
+}
+
+bool presenceTom(Coordonee coord, Case tab[N][N])
+{
+    if (tab[coord.x][coord.y].etatTomate>=5)
+    return true;
+    else
+    return false;
+}
+
+Coordonee selectRandTom(Puceron *puc, Case tab[N][N])
+{
+    Coordonee array[9];
+    int c=0; // Compteur pour nombre de Coord dans le tableau
+    for(int i=0;i<2;i++)
+    {
+        for (int j=0;j<2;j++)
+        {
+            
+        }
+    }
+}
+
+void deplacementPuc(Puceron *puc, Case tab[N][N])
+{
+    Coordonee dir;
+    dir=directionPuc(&puc);
+    dir.x=dir.x+puc->coord.x;
+    dir.y=dir.y+puc->coord.y;
+    if(presenceTom(dir,tab))
+    placementPuc(&puc, dir);
+    
+
+
+}
 
 void mangeTom(Puceron *puc, Case tab[N][N])
 {
     printf("Etat tomate fct : %d\n", tab[puc->coord.x][puc->coord.y].etatTomate);
-    if (tab[puc->coord.x][puc->coord.y].etatTomate==5)
+    if (tab[puc->coord.x][puc->coord.y].etatTomate>=5)
     {
         tab[puc->coord.x][puc->coord.y].etatTomate=1;
         printf("Etat tomate fct : %d\n", tab[puc->coord.x][puc->coord.y].etatTomate);
