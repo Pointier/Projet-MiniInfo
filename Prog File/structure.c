@@ -12,8 +12,22 @@ void initPuc(Puceron *puc)
 }
 void setCoordPuc(Puceron *puc, Coordonee coord)
 {
+    coord=checkCoord(coord);
     puc->coord.x = coord.x;
     puc->coord.y = coord.y;
+}
+
+Coordonee checkCoord(Coordonee coord)
+{
+    if (coord.x==-1)
+    coord.x=29;
+    if(coord.x==30)
+    coord.x=0;
+    if (coord.y==-1)
+    coord.y=29;
+    if(coord.y==30)
+    coord.y=0;
+    return coord;
 }
 
 void placementPuc(Puceron *puc, Case tab[N][N])
@@ -22,11 +36,16 @@ void placementPuc(Puceron *puc, Case tab[N][N])
     tab[puc->coord.x][puc->coord.y].puc = puc;
 }
 
+void suppPucCase(Puceron *puc, Case tab[N][N])
+{
+    tab[puc->coord.x][puc->coord.y].puc = NULL;
+}
 Coordonee directionPuc(Puceron *puc)
 {
     Coordonee dir;
     dir.x = puc->coord.x - puc->precCoord.x;
     dir.y = puc->coord.y - puc->precCoord.y;
+    dir=checkCoord(dir);
     return dir;
 }
 
@@ -51,6 +70,7 @@ Coordonee caseVideRandPuc(Puceron *puc, Case tab[N][N])
             {
                 autourPuc.x = puc->coord.x + i;
                 autourPuc.y = puc->coord.y + j;
+                autourPuc=checkCoord(autourPuc);
 
                 if (tab[autourPuc.x][autourPuc.y].cocci == NULL && tab[autourPuc.x][autourPuc.y].puc == NULL)
                 {
@@ -79,7 +99,6 @@ Coordonee selectRandTom(Puceron *puc, Case tab[N][N])
     /* Initializes random number generator*/
     srand((unsigned)time(&t));
     Coordonee caseTom[8];
-
     Coordonee autourPuc;
     bool test;
     int cTom = 0; // Compteur pour nombre de Coord dans le tableau de tomate mure
@@ -92,6 +111,7 @@ Coordonee selectRandTom(Puceron *puc, Case tab[N][N])
             {
                 autourPuc.x = puc->coord.x + i;
                 autourPuc.y = puc->coord.y + j;
+                autourPuc=checkCoord(autourPuc);
                 test = presenceTom(autourPuc, tab);
 
                 if (test)
@@ -118,26 +138,38 @@ void deplacementPuc(Puceron *puc, Case tab[N][N])
     dir = directionPuc(puc);
     dir.x = dir.x + puc->coord.x;
     dir.y = dir.y + puc->coord.y;
+    dir=checkCoord(dir);
     if (presenceTom(dir, tab))
-        placementPuc(puc, tab);
+    {
+        setCoordPuc(puc,dir);
+        placementPuc(puc, tab); 
+    }
+        
+    else
+    {
+        
+        dir=selectRandTom(puc,tab);
+        setCoordPuc(puc,dir);
+        placementPuc(puc, tab); 
+    }
 }
 
 void mangeTom(Puceron *puc, Case tab[N][N])
 {
-    printf("Etat tomate fct : %d\n", tab[puc->coord.x][puc->coord.y].etatTomate);
+    
     if (tab[puc->coord.x][puc->coord.y].etatTomate >= 5)
     {
         tab[puc->coord.x][puc->coord.y].etatTomate = 1;
-        printf("Etat tomate fct : %d\n", tab[puc->coord.x][puc->coord.y].etatTomate);
+        
         puc->nourriConse++;
     }
 }
 
-void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc)
+void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N])
 {
     puc->age++;
     if (puc->age >= 10)
-        mortPuc(ensP, puc);
+        mortPuc(ensP, puc,tab);
 }
 
 void creaEnsPuc(EnsemblePuc *ensP)
@@ -151,7 +183,7 @@ void ajoutPuc(EnsemblePuc *ensP, Puceron *puc)
     puc->index = ensP->card;
     ensP->card++;
 }
-void mortPuc(EnsemblePuc *ensP, Puceron *puc)
+void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N])
 {
     if (ensP->card > 1)
     {
@@ -160,6 +192,7 @@ void mortPuc(EnsemblePuc *ensP, Puceron *puc)
         ensP->card = ensP->card - 1;                       // On met a jour le cardinal
     }
     puc->index = -1;
+    suppPucCase(puc,tab)
 }
 
 void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP)

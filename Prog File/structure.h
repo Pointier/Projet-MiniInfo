@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define N 10
+#define N 30
 #define NB_PUC 100
 #define NB_COCCI 100
 
@@ -34,8 +34,8 @@ typedef struct
 
 void creaEnsPuc(EnsemblePuc *ensP);
 void ajoutPuc(EnsemblePuc *ensP, Puceron *puc);
-void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc);
-void mortPuc(EnsemblePuc *ensP, Puceron *puc);
+void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]);
+void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]);
 
 typedef struct
 {
@@ -65,6 +65,7 @@ void deplacementPuc(Puceron *puc, Case tab[N][N]);
 Coordonee directionPuc(Puceron *puc);
 bool presenceTom(Coordonee coord, Case tab[N][N]);
 Coordonee selectRandTom(Puceron *puc, Case tab[N][N]); // attention ne renvoie que qunad pres tomate pour l'instant
+void suppPucCase(Puceron *puc, Case tab[N][N]);
 void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP);
-
+Coordonee checkCoord(Coordonee coord);
 #endif

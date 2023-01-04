@@ -36,7 +36,6 @@ void initPlacInsecte(EnsemblePuc *ensP, Case tab[N][N])
         coordRand.y = rand() % (N-1);
         for (int i=0;i<c;i++)
         {
-            printf("Compteur test si rentre a 0 : %d\n",c);
             if (coordRand.x==tabCoord[i].x &&coordRand.y==tabCoord[i].y)
             nouvCoord=false;
         }
