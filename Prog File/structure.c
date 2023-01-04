@@ -192,7 +192,7 @@ void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N])
         ensP->card = ensP->card - 1;                       // On met a jour le cardinal
     }
     puc->index = -1;
-    suppPucCase(puc,tab)
+    suppPucCase(puc,tab);
 }
 
 void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP)
