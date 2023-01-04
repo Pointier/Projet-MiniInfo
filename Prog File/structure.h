@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #define N 10
+#define NB_PUC 100
+#define NB_COCCI 100
 
 typedef struct // Structure stockant des coordonnees en 2D
 {
@@ -26,7 +28,7 @@ void initPuc(Puceron *puc); // Fonction permettant d'initier un puceron avec des
 
 typedef struct
 {
-    Puceron *tab[N];
+    Puceron *tab[NB_PUC];
     int card; // Indique le nombre de puceron dans le tableau
 } EnsemblePuc;
 
@@ -55,6 +57,7 @@ typedef struct
     int etatTomate; // Indique
 } Case;
 
+Coordonee caseVideRandPuc(Puceron *puc,Case tab[N][N]);
 void mangeTom(Puceron *puc, Case tab[N][N]);
 void setCoordPuc(Puceron *puc, Coordonee coord);
 void placementPuc(Puceron *puc, Case tab[N][N]);
@@ -62,5 +65,6 @@ void deplacementPuc(Puceron *puc, Case tab[N][N]);
 Coordonee directionPuc(Puceron *puc);
 bool presenceTom(Coordonee coord, Case tab[N][N]);
 Coordonee selectRandTom(Puceron *puc, Case tab[N][N]); // attention ne renvoie que qunad pres tomate pour l'instant
+void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP);
 
 #endif
