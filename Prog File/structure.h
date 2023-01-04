@@ -5,13 +5,13 @@
 #include <stdbool.h>
 #define N 10
 
-typedef struct
+typedef struct // Structure stockant des coordonnees en 2D
 {
     int x;
     int y;
 } Coordonee;
 
-typedef struct
+typedef struct  // Structure définissant un puceron
 {
     Coordonee coord; // Position dans le tableau 2D de case
     Coordonee precCoord; // Indique les coordonnées du tour précédent
@@ -21,7 +21,7 @@ typedef struct
     bool aMange; // Permet de savoir si le puceron a mange de façon consecutive
 } Puceron;
 
-void initPuc(Puceron *puc);
+void initPuc(Puceron *puc); // Fonction permettant d'initier un puceron avec des parametre de base et avec des coordonnées en dehors de la matrice.
 
 
 typedef struct

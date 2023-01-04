@@ -121,6 +121,4 @@ void mortPuc(EnsemblePuc *ensP, Puceron *puc)
         ensP->card = ensP->card - 1;                       // On met a jour le cardinal
     }
     puc->index = -1;
-    puc->coord.x = -1; // On supprime le puceron de la grille
-    puc->coord.y = -1;
 }

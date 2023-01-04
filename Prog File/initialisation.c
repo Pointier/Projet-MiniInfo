@@ -14,12 +14,12 @@ void initialisationCase(Case tab[N][N], int taille)
     }
 }
 
-void initTab(Puceron *tab[],int numbPuc)
+void initTab(Puceron *tab[], int numbPuc)
 {
-    Puceron try;
-    initPuc(&try);
-    Coordonee coord={1,1};
-    //placementPuc(&try,coord,tab);
-    tab[0]=&try;
+    for (int i = 0; i < numbPuc; i++)
+    {
+        Puceron puc;
+        initPuc(&puc);
+        tab[i] = &puc;
+    }
 }
-
