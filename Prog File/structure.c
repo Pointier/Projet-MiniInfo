@@ -33,7 +33,34 @@ Coordonee checkCoord(Coordonee coord)
 void placementPuc(Puceron *puc, Case tab[N][N])
 {
 
+    printf("Coord puc in pla x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = puc;
+}
+
+void deplacementPuc(Puceron *puc, Case tab[N][N])
+{
+    printf("Deplacement Puc debut\n");
+    printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
+    Coordonee dir;
+    dir = directionPuc(puc);
+    dir.x = dir.x + puc->coord.x;
+    dir.y = dir.y + puc->coord.y;
+    dir=checkCoord(dir);
+    if (presenceTom(dir, tab))
+    {
+        suppPucCase(puc,tab);
+        setCoordPuc(puc,dir);
+        placementPuc(puc, tab); 
+    }
+        
+    else
+    {
+        suppPucCase(puc,tab);
+        dir=selectRandTom(puc,tab);
+        setCoordPuc(puc,dir);
+        placementPuc(puc, tab); 
+    }
+    
 }
 
 void suppPucCase(Puceron *puc, Case tab[N][N])
@@ -132,28 +159,7 @@ Coordonee selectRandTom(Puceron *puc, Case tab[N][N])
         return caseVideRandPuc(puc, tab);
 }
 
-void deplacementPuc(Puceron *puc, Case tab[N][N])
-{
-    Coordonee dir;
-    dir = directionPuc(puc);
-    dir.x = dir.x + puc->coord.x;
-    dir.y = dir.y + puc->coord.y;
-    dir=checkCoord(dir);
-    if (presenceTom(dir, tab))
-    {
-        suppPucCase(puc,tab);
-        setCoordPuc(puc,dir);
-        placementPuc(puc, tab); 
-    }
-        
-    else
-    {
-        suppPucCase(puc,tab);
-        dir=selectRandTom(puc,tab);
-        setCoordPuc(puc,dir);
-        placementPuc(puc, tab); 
-    }
-}
+
 
 void mangeTom(Puceron *puc, Case tab[N][N])
 {
