@@ -20,54 +20,29 @@ void setCoordPuc(Puceron *puc, Coordonee coord)
 Coordonee checkCoord(Coordonee coord)
 {
     if (coord.x==-1)
-    coord.x=29;
-    if(coord.x==30)
+    coord.x=N-1;
+    if(coord.x==N)
     coord.x=0;
     if (coord.y==-1)
-    coord.y=29;
-    if(coord.y==30)
+    coord.y=N-1;
+    if(coord.y==N)
     coord.y=0;
     return coord;
 }
 
 void placementPuc(Puceron *puc, Case tab[N][N])
 {
-
+    
     printf("Coord puc in pla x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = puc;
-}
-void aa(Puceron *puc, Case tab[N][N])
-{
-    printf("aa Puc debut\n");
-    printf("Coord puc in aa x: %d y: %d\n",puc->coord.x,puc->coord.y);
-    Coordonee dir;
-    dir = directionPuc(puc);
-    dir.x = dir.x + puc->coord.x;
-    dir.y = dir.y + puc->coord.y;
-    dir=checkCoord(dir);
-    if (presenceTom(dir, tab))
-    {
-        suppPucCase(puc,tab);
-        setCoordPuc(puc,dir);
-        placementPuc(puc, tab); 
-    }
-        
-    else
-    {
-        suppPucCase(puc,tab);
-        dir=selectRandTom(puc,tab);
-        setCoordPuc(puc,dir);
-        placementPuc(puc, tab); 
-    }
-    
 }
 
 void deplacementPuc(Puceron *puc, Case tab[N][N])
 {
-    printf("Deplacement Puc debut\n");
-    printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
+    
     Coordonee dir;
-    dir = directionPuc(puc);
+    /*dir = directionPuc(puc);
+    
     dir.x = dir.x + puc->coord.x;
     dir.y = dir.y + puc->coord.y;
     dir=checkCoord(dir);
@@ -79,18 +54,23 @@ void deplacementPuc(Puceron *puc, Case tab[N][N])
     }
         
     else
-    {
+    {*/
         suppPucCase(puc,tab);
+        printf("Ok1\n");
+        //printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
         dir=selectRandTom(puc,tab);
         setCoordPuc(puc,dir);
         placementPuc(puc, tab); 
-    }
+   // }
     
 }
 
 void suppPucCase(Puceron *puc, Case tab[N][N])
 {
+    printf("Ok2\n");
+    printf("Coord puc in supp x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = NULL;
+    printf("Ok3\n");
 }
 Coordonee directionPuc(Puceron *puc)
 {
@@ -147,9 +127,8 @@ Coordonee caseVideRandPuc(Puceron *puc, Case tab[N][N])
 
 Coordonee selectRandTom(Puceron *puc, Case tab[N][N])
 {
-    time_t t;
-    /* Initializes random number generator*/
-    srand((unsigned)time(&t));
+    printf("Ok2\n");
+    printf("Rand x: %d y: %d\n",puc->coord.x,puc->coord.y);
     Coordonee caseTom[8];
     Coordonee autourPuc;
     bool test;

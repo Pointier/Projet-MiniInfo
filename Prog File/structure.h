@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define N 30
-#define NB_PUC 100
-#define NB_COCCI 100
+#define N 10
+#define NB_PUC 30
+#define NB_COCCI 30
 
 typedef struct // Structure stockant des coordonnees en 2D
 {
@@ -62,7 +62,6 @@ void mangeTom(Puceron *puc, Case tab[N][N]);
 void setCoordPuc(Puceron *puc, Coordonee coord);
 
 void placementPuc(Puceron *puc, Case tab[N][N]);
-void aa(Puceron *puc, Case tab[N][N]);
 void deplacementPuc(Puceron *puc, Case tab[N][N]);
 Coordonee directionPuc(Puceron *puc);
 bool presenceTom(Coordonee coord, Case tab[N][N]);
