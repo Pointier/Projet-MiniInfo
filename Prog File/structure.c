@@ -17,7 +17,7 @@ void setCoordPuc(Puceron *puc, Coordonee coord)
     puc->coord.y = coord.y;
 }
 
-Coordonee checkCoord(Coordonee coord)
+Coordonee checkCoord(Coordonee coord) // Permet de passer de changer de bord.
 {
     if (coord.x==-1)
     coord.x=N-1;
@@ -30,14 +30,14 @@ Coordonee checkCoord(Coordonee coord)
     return coord;
 }
 
-void placementPuc(Puceron *puc, Case tab[N][N])
+void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case indiqué
 {
     
     printf("Coord puc in pla x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = puc;
 }
 
-void deplacementPuc(Puceron *puc, Case tab[N][N])
+void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
 {
     
     Coordonee dir;
@@ -65,14 +65,14 @@ void deplacementPuc(Puceron *puc, Case tab[N][N])
     
 }
 
-void suppPucCase(Puceron *puc, Case tab[N][N])
+void suppPucCase(Puceron *puc, Case tab[N][N]) // Supprime le pointeur puceron de la case.
 {
     printf("Ok2\n");
     printf("Coord puc in supp x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = NULL;
     printf("Ok3\n");
 }
-Coordonee directionPuc(Puceron *puc)
+Coordonee directionPuc(Puceron *puc) // Permet de connaitre la direction du puceron.
 {
     Coordonee dir;
     dir.x = puc->coord.x - puc->precCoord.x;
@@ -81,7 +81,7 @@ Coordonee directionPuc(Puceron *puc)
     return dir;
 }
 
-bool presenceTom(Coordonee coord, Case tab[N][N])
+bool presenceTom(Coordonee coord, Case tab[N][N]) // Permet de savoir si tomate mangeable sur la case.
 {
     if (tab[coord.x][coord.y].etatTomate >= 5 && tab[coord.x][coord.y].cocci == NULL && tab[coord.x][coord.y].puc == NULL)
         return true;
@@ -125,7 +125,7 @@ Coordonee caseVideRandPuc(Puceron *puc, Case tab[N][N])
     }
 }
 
-Coordonee selectRandTom(Puceron *puc, Case tab[N][N])
+Coordonee selectRandTom(Puceron *puc, Case tab[N][N]) // Selectionne une case vide autour des pucerons et si pas possible renvoie la position actuelle du puceron.
 {
     printf("Ok2\n");
     printf("Rand x: %d y: %d\n",puc->coord.x,puc->coord.y);
@@ -165,7 +165,7 @@ Coordonee selectRandTom(Puceron *puc, Case tab[N][N])
 
 
 
-void mangeTom(Puceron *puc, Case tab[N][N])
+void mangeTom(Puceron *puc, Case tab[N][N]) // Fait manger la tomate au puceron si possible
 {
     
     if (tab[puc->coord.x][puc->coord.y].etatTomate >= 5)
@@ -176,7 +176,7 @@ void mangeTom(Puceron *puc, Case tab[N][N])
     }
 }
 
-void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N])
+void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Fonction qui vieillit les pucerons et appelle la fonction mort si trop vieux
 {
     puc->age++;
     if (puc->age >= 10)
@@ -194,7 +194,7 @@ void ajoutPuc(EnsemblePuc *ensP, Puceron *puc)
     puc->index = ensP->card;
     ensP->card++;
 }
-void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N])
+void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Tue les puceron et les enleve de la grille.
 {
     if (ensP->card > 1)
     {
@@ -206,7 +206,7 @@ void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N])
     suppPucCase(puc,tab);
 }
 
-void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP)
+void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la reproduction d'un nouveau puceron.
 {
     Puceron nPuceron; // Nouveau puceron a a ajouté dans Ensemble Puceron
     initPuc(&nPuceron);

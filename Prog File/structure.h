@@ -55,18 +55,17 @@ typedef struct
     int etatTomate; // Indique
 } Case;
 
-void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]);
-void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]);
-Coordonee caseVideRandPuc(Puceron *puc,Case tab[N][N]);
-void mangeTom(Puceron *puc, Case tab[N][N]);
-void setCoordPuc(Puceron *puc, Coordonee coord);
+void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Fonction qui vieillit les pucerons et appelle la fonction mort si trop vieux
 
-void placementPuc(Puceron *puc, Case tab[N][N]);
-void deplacementPuc(Puceron *puc, Case tab[N][N]);
-Coordonee directionPuc(Puceron *puc);
-bool presenceTom(Coordonee coord, Case tab[N][N]);
+void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Tue les puceron et les enleve de la grille.
+Coordonee caseVideRandPuc(Puceron *puc,Case tab[N][N]); // Selectionne une case vide autour des pucerons et si pas possible renvoie la position actuelle du puceron.
+void mangeTom(Puceron *puc, Case tab[N][N]); // Fait manger la tomate au puceron si possible
+void placementPuc(Puceron *puc, Case tab[N][N]); // Place le puceron sur la case indiqué
+void deplacementPuc(Puceron *puc, Case tab[N][N]); // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
+Coordonee directionPuc(Puceron *puc); // Permet de connaitre la direction du puceron.
+bool presenceTom(Coordonee coord, Case tab[N][N]); // Permet de savoir si tomate mangeable sur la case.
 Coordonee selectRandTom(Puceron *puc, Case tab[N][N]); // attention ne renvoie que qunad pres tomate pour l'instant
-void suppPucCase(Puceron *puc, Case tab[N][N]);
-void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP);
-Coordonee checkCoord(Coordonee coord);
+void suppPucCase(Puceron *puc, Case tab[N][N]); // Supprime le pointeur puceron de la case.
+void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP); // Permet la reproduction d'un nouveau puceron.
+Coordonee checkCoord(Coordonee coord); // Permet de passer de changer de bord.
 #endif
