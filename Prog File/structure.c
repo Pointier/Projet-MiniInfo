@@ -84,7 +84,7 @@ Coordonee selectRandTom(Puceron *puc, Case tab[N][N])
                     autourPuc.x = puc->coord.x + i;
                     autourPuc.y = puc->coord.y + j;
 
-                    if (tab[coord.x][coord.y].cocci == NULL && tab[coord.x][coord.y].puc == NULL)
+                    if (tab[autourPuc.x][autourPuc.y].cocci == NULL && tab[autourPuc.x][autourPuc.y].puc == NULL)
                     {
                         caseTom[cVide] = autourPuc;
                         cVide++;
