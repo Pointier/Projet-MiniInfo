@@ -34,8 +34,6 @@ typedef struct
 
 void creaEnsPuc(EnsemblePuc *ensP);
 void ajoutPuc(EnsemblePuc *ensP, Puceron *puc);
-void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]);
-void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]);
 
 typedef struct
 {
@@ -57,6 +55,8 @@ typedef struct
     int etatTomate; // Indique
 } Case;
 
+void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]);
+void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]);
 Coordonee caseVideRandPuc(Puceron *puc,Case tab[N][N]);
 void mangeTom(Puceron *puc, Case tab[N][N]);
 void setCoordPuc(Puceron *puc, Coordonee coord);
