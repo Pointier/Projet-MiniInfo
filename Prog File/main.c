@@ -23,13 +23,13 @@ int main()
     
    
     Coordonee mil={4,4};
-    placementPuc(&pussy,mil,potager);
+    placementPuc(&pussy,potager);
     Puceron *array[10];
     initTab(array,10);
     Coordonee mil1={1,1};
-    placementPuc(array[0],mil1,potager);
+    placementPuc(array[0],potager);
     Coordonee mil2={0,0};
-    placementPuc(array[1],mil2,potager);
+    placementPuc(array[1],potager);
 
 
     printf("Posi pussy : %d %d \n",pussy.coord.x,pussy.coord.y);
