@@ -36,6 +36,31 @@ void placementPuc(Puceron *puc, Case tab[N][N])
     printf("Coord puc in pla x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = puc;
 }
+void aa(Puceron *puc, Case tab[N][N])
+{
+    printf("aa Puc debut\n");
+    printf("Coord puc in aa x: %d y: %d\n",puc->coord.x,puc->coord.y);
+    Coordonee dir;
+    dir = directionPuc(puc);
+    dir.x = dir.x + puc->coord.x;
+    dir.y = dir.y + puc->coord.y;
+    dir=checkCoord(dir);
+    if (presenceTom(dir, tab))
+    {
+        suppPucCase(puc,tab);
+        setCoordPuc(puc,dir);
+        placementPuc(puc, tab); 
+    }
+        
+    else
+    {
+        suppPucCase(puc,tab);
+        dir=selectRandTom(puc,tab);
+        setCoordPuc(puc,dir);
+        placementPuc(puc, tab); 
+    }
+    
+}
 
 void deplacementPuc(Puceron *puc, Case tab[N][N])
 {

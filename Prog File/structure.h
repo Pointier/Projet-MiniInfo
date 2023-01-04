@@ -60,7 +60,9 @@ void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]);
 Coordonee caseVideRandPuc(Puceron *puc,Case tab[N][N]);
 void mangeTom(Puceron *puc, Case tab[N][N]);
 void setCoordPuc(Puceron *puc, Coordonee coord);
+
 void placementPuc(Puceron *puc, Case tab[N][N]);
+void aa(Puceron *puc, Case tab[N][N]);
 void deplacementPuc(Puceron *puc, Case tab[N][N]);
 Coordonee directionPuc(Puceron *puc);
 bool presenceTom(Coordonee coord, Case tab[N][N]);

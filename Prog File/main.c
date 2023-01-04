@@ -25,11 +25,11 @@ int main()
     
     placementPuc(ensP.tab[0],potager);
     printf("Coord puc x: %d y: %d\n",ensP.tab[0]->coord.x,ensP.tab[0]->coord.y);
-    deplacementPuc(ensP.tab[0],potager);
+    aa(ensP.tab[0],potager);
     Puceron fuck;
     fuck.coord.x=5;
     fuck.coord.y=5;
-    deplacementPuc(&fuck,potager);
+    aa(&fuck,potager);
 
     tour(5,&ensP,potager);
 
