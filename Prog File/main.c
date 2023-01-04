@@ -4,9 +4,7 @@
 
 int main()
 {
-    time_t t;
-    /* Initializes random number generator*/
-    srand((unsigned) time(&t));
+    
     printf("start main\n");
     Case potager[N][N];
 
@@ -23,14 +21,24 @@ int main()
     ajoutPuc(&testEnsP, &fuzzy);
     
     
-    potager[5][5].puc=&pussy;
-    Coordonee mil={5,5};
-    placementPuc(&pussy,mil);
+   
+    Coordonee mil={4,4};
+    placementPuc(&pussy,mil,potager);
+    Puceron *array[10];
+    initTab(array,10);
+    Coordonee mil1={1,1};
+    placementPuc(array[0],mil1,potager);
+    Coordonee mil2={0,0};
+    placementPuc(array[1],mil2,potager);
+
 
     printf("Posi pussy : %d %d \n",pussy.coord.x,pussy.coord.y);
     printf("Etat tomate : %d\n", potager[5][5].etatTomate);
     mangeTom(&pussy, potager);
     printf("Etat tomate : %d\n", potager[5][5].etatTomate);
+    //potager[4][4].etatTomate=1;
+    Coordonee pres=selectRandTom(&pussy,potager);
+    printf("X= %d et Y= %d\n",pres.x,pres.y);
     
     afficher(potager, N);
 

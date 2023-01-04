@@ -18,6 +18,7 @@ typedef struct
     int age;         // Si atteint 10, le puceron meurt
     int nourriConse; // Nombre de tours consécutifs où le puceron a mangé
     int index;       // Indique la position du puceron dans la structure ...
+    bool aMange; // Permet de savoir si le puceron a mange de façon consecutive
 } Puceron;
 
 void initPuc(Puceron *puc);
@@ -55,10 +56,10 @@ typedef struct
 } Case;
 
 void mangeTom(Puceron *puc, Case tab[N][N]);
-void placementPuc(Puceron *puc, Coordonee coord);
+void placementPuc(Puceron *puc, Coordonee coord,Case tab[N][N]);
 void deplacementPuc(Puceron *puc, Case tab[N][N]);
 Coordonee directionPuc(Puceron *puc);
 bool presenceTom(Coordonee coord, Case tab[N][N]);
-Coordonee selectRandTom(Puceron *puc, Case tab[N][N]);
+Coordonee selectRandTom(Puceron *puc, Case tab[N][N]); // attention ne renvoie que qunad pres tomate pour l'instant
 
 #endif
