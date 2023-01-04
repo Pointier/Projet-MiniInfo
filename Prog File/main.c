@@ -23,8 +23,10 @@ int main()
     initPlacInsecte(&ensP,potager);
     printf("Init Plac Insecte done\n");
 
-    afficher(potager,N);
-    printf("Affichage Done\n");
+    tour(5,&ensP,potager);
+
+   // afficher(potager,N);
+    //printf("Affichage Done\n");
     
    
 

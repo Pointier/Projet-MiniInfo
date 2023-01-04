@@ -57,6 +57,7 @@ void actionPuc(EnsemblePuc *ensP, Case tab[N][N])
 
 void tour(int nbtour,EnsemblePuc *ensP, Case tab [N][N])
 {
+    
     for(int i=0;i<nbtour;i++)
     {
         printf("Tour %d :\n",i);
