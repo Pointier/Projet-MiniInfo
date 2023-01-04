@@ -33,13 +33,13 @@ Coordonee checkCoord(Coordonee coord) // Permet de passer de changer de bord.
 void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case indiqué
 {
     
-    printf("Coord puc in pla x: %d y: %d\n",puc->coord.x,puc->coord.y);
+    //printf("Coord puc in pla x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = puc;
 }
 
 void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
 {
-    
+    printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
     Coordonee dir;
     /*dir = directionPuc(puc);
     
@@ -57,7 +57,7 @@ void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit sel
     {*/
         suppPucCase(puc,tab);
         printf("Ok1\n");
-        //printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
+        
         dir=selectRandTom(puc,tab);
         setCoordPuc(puc,dir);
         placementPuc(puc, tab); 
@@ -67,7 +67,7 @@ void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit sel
 
 void suppPucCase(Puceron *puc, Case tab[N][N]) // Supprime le pointeur puceron de la case.
 {
-    printf("Ok2\n");
+    //printf("Ok2\n");
     printf("Coord puc in supp x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = NULL;
     printf("Ok3\n");

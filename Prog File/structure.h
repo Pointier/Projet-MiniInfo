@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define N 10
-#define NB_PUC 30
-#define NB_COCCI 30
+#define N 30
+#define NB_PUC 100
+#define NB_COCCI 100
 
 typedef struct // Structure stockant des coordonnees en 2D
 {
