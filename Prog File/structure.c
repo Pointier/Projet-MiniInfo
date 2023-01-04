@@ -141,13 +141,14 @@ void deplacementPuc(Puceron *puc, Case tab[N][N])
     dir=checkCoord(dir);
     if (presenceTom(dir, tab))
     {
+        suppPucCase(puc,tab);
         setCoordPuc(puc,dir);
         placementPuc(puc, tab); 
     }
         
     else
     {
-        
+        suppPucCase(puc,tab);
         dir=selectRandTom(puc,tab);
         setCoordPuc(puc,dir);
         placementPuc(puc, tab); 
