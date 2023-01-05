@@ -70,7 +70,7 @@ void suppPucCase(int x,int y, Case tab[N][N]) // Supprime le pointeur puceron de
 {
     //printf("Ok2\n");
     //printf("Adresse puc dans suppPucCase : %p\n",puc);
-    printf("Coord puc in suppPuceCase x: %d y: %d\n",x,y);
+    //printf("Coord puc in suppPuceCase x: %d y: %d\n",x,y);
     tab[x][y].puc = NULL;
     
     

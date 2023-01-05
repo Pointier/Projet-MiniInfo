@@ -48,12 +48,12 @@ void initPlacInsecte(EnsemblePuc *ensP, Case tab[N][N])
     for (int i = 0; i < ensP->card; i++)
     {
         ensP->tab[i]->coord = tabCoord[i];
-        printf("Coord puc %d x %d y %d", i, ensP->tab[i]->coord.x, ensP->tab[i]->coord.y);
+        printf("Coord puc %d x %d y %d\n", i, ensP->tab[i]->coord.x, ensP->tab[i]->coord.y);
         placementPuc(ensP->tab[i], tab);
     }
     for (int i = 0; i < ensP->card; i++)
     {
-
-        printf("Coord puc %d x %d y %d", i, ensP->tab[i]->coord.x, ensP->tab[i]->coord.y);
+        printf("Coord puc %d adresse %p\n", i, ensP->tab[i]);
+        printf("Coord puc %d x %d y %d\n", i, ensP->tab[i]->coord.x, ensP->tab[i]->coord.y);
     }
 }
