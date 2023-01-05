@@ -40,6 +40,7 @@ void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case 
 void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
 {
     printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
+    printf("Adresse puc dans depla : %p\n",puc);
     Coordonee dir;
     /*dir = directionPuc(puc);
     
@@ -67,8 +68,10 @@ void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit sel
 void suppPucCase(Puceron *puc, Case tab[N][N]) // Supprime le pointeur puceron de la case.
 {
     //printf("Ok2\n");
-    printf("Coord puc in supp x: %d y: %d\n",puc->coord.x,puc->coord.y);
+    printf("Adresse puc dans suppPucCase : %p\n",puc);
+    printf("Coord puc in suppPuceCase x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = NULL;
+    
 }
 Coordonee directionPuc(Puceron *puc) // Permet de connaitre la direction du puceron.
 {
