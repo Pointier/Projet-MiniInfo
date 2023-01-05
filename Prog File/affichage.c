@@ -106,7 +106,7 @@ void tour(int nbtour,EnsemblePuc *ensP, Case tab [N][N])
         printf("Deplacement Ensemble Puc done\n");
         actionPuc(ensP,tab);
         printf("Action Puc done\n");
-        printf("Direction puceron 0 x %d y %d\n",ensP->tab[0].direction.x,ensP->tab[0].direction.y);
+        printf("Direction puceron %d x %d y %d\n",i,ensP->tab[0].direction.x,ensP->tab[0].direction.y);
         afficher(tab,N);
         printf("Fin tour\n");
     }
