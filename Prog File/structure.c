@@ -38,7 +38,7 @@ void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case 
 
 void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
 {
-
+    printf("Start deplacement puceron\n");
     Coordonnee dir;
     checkCoord(&dir);
 
@@ -108,9 +108,11 @@ Coordonnee decodageDirection(int n)
 
 void directionPuc(Puceron *puc,Case tab[N][N]) // Permet de connaitre la direction du puceron.
 {
+    printf("Direction puceron 0 x %d y %d\n",puc->direction.x,puc->direction.y);
     if((puc->direction.x==0 && puc->direction.y==0)||!(presenceTom(puc->direction,tab)))
     {
         puc->direction=selectRandTom(puc->direction,tab);
+        printf("Direction puceron 0 x %d y %d\n",puc->direction.x,puc->direction.y);
     }
 }
 

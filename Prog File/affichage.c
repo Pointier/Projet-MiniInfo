@@ -87,6 +87,7 @@ void actionPuc(EnsemblePuc *ensP, Case tab[N][N])
         if (ensP->tab[i].nourriConse == 5)
             reproPuc(&ensP->tab[i], tab, ensP);
         vieillissementPuc(ensP, &ensP->tab[i],tab);
+        directionPuc(&ensP->tab[i],tab);
     }
 }
 
@@ -97,10 +98,15 @@ void tour(int nbtour,EnsemblePuc *ensP, Case tab [N][N])
         printf("Tour %d :\n",i);
         printf("Ok1\n");
         pousseTomate(tab);
-        deplacementEnsPuc(ensP, tab);
+        if(i!=0)
+        {
+            deplacementEnsPuc(ensP, tab);
+        }
+        
         printf("Deplacement Ensemble Puc done\n");
         actionPuc(ensP,tab);
         printf("Action Puc done\n");
+        printf("Direction puceron 0 x %d y %d\n",ensP->tab[0].direction.x,ensP->tab[0].direction.y);
         afficher(tab,N);
         printf("Fin tour\n");
     }

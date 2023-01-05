@@ -11,16 +11,16 @@ int main()
     Case potager[N][N];
     // printf("Potager Done\n");
     initialisationCase(potager, N);
-    // printf("Init Case done\n");
+    //printf("Init Case done\n");
     EnsemblePuc ensP;
-    // printf("Ensemble puc done\n");
+    //printf("Ensemble puc done\n");
     creaEnsPuc(&ensP);
-    // printf("CreaEnsPuc done\n");
+    //printf("CreaEnsPuc done\n");
     int numPucIni = 2;
     initEnsemblePuc(&ensP, numPucIni);
-    // printf("Init Ensemble Puc done\n");
+    //printf("Init Ensemble Puc done\n");
     initPlacInsecte(&ensP, potager);
-    printf("Init Plac Insecte done\n");
+    //printf("Init Plac Insecte done\n");
 
     tour(20, &ensP, potager);
 
