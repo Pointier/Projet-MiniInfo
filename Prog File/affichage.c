@@ -68,5 +68,6 @@ void tour(int nbtour,EnsemblePuc *ensP, Case tab [N][N])
         printf("Deplacement Ensemble Puc done\n");
         actionPuc(ensP,tab);
         printf("Action Puc done\n");
+        afficher(tab,N);
     }
 }

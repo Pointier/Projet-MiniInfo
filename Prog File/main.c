@@ -40,8 +40,8 @@ int main()
 
     tour(5, &ensP, potager);
 
-    // afficher(potager,N);
-    // printf("Affichage Done\n");
+    //afficher(potager,N);
+    //printf("Affichage Done\n");
 
     printf("end main\n");
     return 0;

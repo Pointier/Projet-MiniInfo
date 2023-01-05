@@ -26,12 +26,12 @@ void initEnsemblePuc(EnsemblePuc *ensP, int numPuc)
 
 void initPlacInsecte(EnsemblePuc *ensP, Case tab[N][N])
 {
-    Coordonee tabCoord[ensP->card]; // Penser a rajouter le nombre de coccinelle;
+    Coordonnee tabCoord[ensP->card]; // Penser a rajouter le nombre de coccinelle;
     int c = 0;                      // Compteur du nombre de coordonnée dans le tableau
     while (c < ensP->card)
     {
         bool nouvCoord = true; //
-        Coordonee coordRand;
+        Coordonnee coordRand;
         coordRand.x = rand() % (N - 1);
         coordRand.y = rand() % (N - 1);
         for (int i = 0; i < c; i++)
@@ -50,10 +50,5 @@ void initPlacInsecte(EnsemblePuc *ensP, Case tab[N][N])
         ensP->tab[i].coord = tabCoord[i];
         //printf("Coord puc %d x %d y %d\n", i, ensP->tab[i].coord.x, ensP->tab[i].precCoord.y);
         placementPuc(&ensP->tab[i], tab);
-    }
-    for (int i = 0; i < ensP->card; i++)
-    {
-        printf("Coord puc %d adresse %p\n", i, ensP->tab[i]);
-        printf("Coord puc %d x %d y %d\n", i, ensP->tab[i].coord.x, ensP->tab[i].coord.y);
     }
 }
