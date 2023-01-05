@@ -177,6 +177,8 @@ void mangeTom(Puceron *puc, Case tab[N][N]) // Fait manger la tomate au puceron 
         
         puc->nourriConse++;
     }
+    else
+    puc->nourriConse=0;
 }
 
 void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Fonction qui vieillit les pucerons et appelle la fonction mort si trop vieux
