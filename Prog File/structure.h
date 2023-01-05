@@ -72,7 +72,6 @@ void suppPucCase(Coordonnee coord, Case tab[N][N]); // Supprime le pointeur puce
 void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP); // Permet la reproduction d'un nouveau puceron.
 void checkCoord(Coordonnee *coord); // Permet de passer de changer de bord.
 int generationDirection();
+void setCoordPuc(Puceron *puc,Coordonnee coord);
 Coordonnee decodageDirection(int n);
-
-
 #endif

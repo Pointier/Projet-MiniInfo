@@ -33,27 +33,27 @@ void checkCoord(Coordonnee *coord) // Permet de passer de changer de bord.
 
 void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case indiqué
 {
+    checkCoord(&puc->coord);
     tab[puc->coord.x][puc->coord.y].puc = puc;
 }
 
 void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
 {
     printf("Start deplacement puceron\n");
-    Coordonnee dir;
-    checkCoord(&dir);
 
     if (presenceTom(puc->direction, tab))
     {
         suppPucCase(puc->coord, tab);
-        setCoordPuc(puc, dir);
+        puc->coord.x=puc->coord.x+puc->direction.x;
+        puc->coord.y=puc->coord.y+puc->direction.y;
         placementPuc(puc, tab);
     }
 
     else
     {
         suppPucCase(puc->coord, tab);
-        dir = selectRandTom(puc->coord, tab);
-        setCoordPuc(puc, dir);
+        puc->coord.x=puc->coord.x+puc->direction.x;
+        puc->coord.y=puc->coord.y+puc->direction.y;
         placementPuc(puc, tab);
     }
 }
