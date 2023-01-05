@@ -5,9 +5,9 @@
 int main()
 {
     printf("start main\n");
+    //printf("Taille N : %d \n",N);
     time_t t;
     srand((unsigned) time(&t));
-    printf("Chiffre %d\n",rand()%10);
     Case potager[N][N];
     // printf("Potager Done\n");
     initialisationCase(potager, N);
@@ -16,13 +16,13 @@ int main()
     // printf("Ensemble puc done\n");
     creaEnsPuc(&ensP);
     // printf("CreaEnsPuc done\n");
-    int numPucIni = 20;
+    int numPucIni = 2;
     initEnsemblePuc(&ensP, numPucIni);
     // printf("Init Ensemble Puc done\n");
     initPlacInsecte(&ensP, potager);
     printf("Init Plac Insecte done\n");
 
-    tour(200, &ensP, potager);
+    tour(20, &ensP, potager);
 
     //afficher(potager,N);
     //printf("Affichage Done\n");

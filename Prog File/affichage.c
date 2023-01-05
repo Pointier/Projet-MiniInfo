@@ -35,6 +35,17 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
         }
     }
 }
+void pousseTomate(Case tab[N][N])
+{
+    for(int i=0;i<N;i++)
+    {
+        for(int j=0;j<N;j++)
+        {
+            if(tab[i][j].etatTomate<20)
+            tab[i][j].etatTomate++;
+        }
+    }
+}
 
 void deplacementEnsPuc(EnsemblePuc *ensP, Case tab[N][N])
 {
@@ -62,6 +73,7 @@ void tour(int nbtour,EnsemblePuc *ensP, Case tab [N][N])
     {
         printf("Tour %d :\n",i);
         printf("Ok1\n");
+        pousseTomate(tab);
         deplacementEnsPuc(ensP, tab);
         printf("Deplacement Ensemble Puc done\n");
         actionPuc(ensP,tab);

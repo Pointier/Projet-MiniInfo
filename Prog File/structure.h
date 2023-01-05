@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define N 30
+#define N 8
 #define NB_PUC 100
 #define NB_COCCI 100
 

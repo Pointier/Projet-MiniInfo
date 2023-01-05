@@ -28,7 +28,7 @@ void setCoordPuc(Puceron *puc, Coordonnee coord)
 
 void checkCoord(Coordonnee *coord) // Permet de passer de changer de bord.
 {
-   /* if (coord->x==-1)
+    if (coord->x==-1)
     coord->x=N-1;
     if(coord->x==N)
     coord->x=0;
@@ -36,11 +36,13 @@ void checkCoord(Coordonnee *coord) // Permet de passer de changer de bord.
     coord->y=N-1;
     if(coord->y==N)
     coord->y=0;
-    */
+    
 }
 
 void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case indiqué
 {
+    printf("Start Placement Puc\n");
+    printf("Info taille %d\n",N);
     tab[puc->coord.x][puc->coord.y].puc = puc;
 }
 
