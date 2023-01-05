@@ -20,20 +20,23 @@ typedef struct  // Structure définissant un puceron
     int age;         // Si atteint 10, le puceron meurt
     int nourriConse; // Nombre de tours consécutifs où le puceron a mangé
     int index;       // Indique la position du puceron dans la structure ...
-    bool aMange; // Permet de savoir si le puceron a mange de façon consecutive
 } Puceron;
+
+
 
 void initPuc(Puceron *puc); // Fonction permettant d'initier un puceron avec des parametre de base et avec des coordonnées en dehors de la matrice.
 
 
 typedef struct
 {
-    Puceron *tab[NB_PUC];
+    Puceron tab[NB_PUC];
     int card; // Indique le nombre de puceron dans le tableau
 } EnsemblePuc;
 
+
+
 void creaEnsPuc(EnsemblePuc *ensP);
-void ajoutPuc(EnsemblePuc *ensP, Puceron *puc);
+void ajoutPuc(EnsemblePuc *ensP, Puceron puc);
 
 typedef struct
 {
@@ -55,8 +58,8 @@ typedef struct
     int etatTomate; // Indique
 } Case;
 
+Puceron* retournPuc(EnsemblePuc *ensP,int i);
 void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Fonction qui vieillit les pucerons et appelle la fonction mort si trop vieux
-
 void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Tue les puceron et les enleve de la grille.
 Coordonee caseVideRandPuc(int x,int y,Case tab[N][N]); // Selectionne une case vide autour des pucerons et si pas possible renvoie la position actuelle du puceron.
 void mangeTom(Puceron *puc, Case tab[N][N]); // Fait manger la tomate au puceron si possible

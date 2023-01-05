@@ -10,6 +10,15 @@ void initPuc(Puceron *puc)
     puc->nourriConse = 0;
     puc->index = -1;
 }
+Puceron* retournPuc(EnsemblePuc *ensP,int i)
+{
+    Puceron *ptr=NULL;
+    if(i<ensP->card)
+    ptr=&ensP->tab[i];
+    return ptr;
+
+}
+
 void setCoordPuc(Puceron *puc, Coordonee coord)
 {
     coord=checkCoord(coord);
@@ -40,7 +49,7 @@ void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case 
 void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
 {
     printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
-    printf("Adresse puc dans depla : %p\n",puc);
+    //printf("Adresse puc dans depla : %p\n",puc);
     Coordonee dir;
     /*dir = directionPuc(puc);
     
@@ -57,7 +66,7 @@ void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit sel
     else
     {*/
         suppPucCase(puc->coord.x,puc->coord.y,tab);
-        printf("Adresse puc dans depla : %p\n",puc);
+        //printf("Adresse puc dans depla : %p\n",puc);
         printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
         dir=selectRandTom(puc->coord.x,puc->coord.y,tab);
         setCoordPuc(puc,dir);
@@ -193,10 +202,10 @@ void creaEnsPuc(EnsemblePuc *ensP)
     ensP->card = 0;
 }
 
-void ajoutPuc(EnsemblePuc *ensP, Puceron *puc)
+void ajoutPuc(EnsemblePuc *ensP, Puceron puc)
 {
     ensP->tab[ensP->card] = puc;
-    puc->index = ensP->card;
+    puc.index = ensP->card;
     ensP->card++;
 }
 void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Tue les puceron et les enleve de la grille.
@@ -204,7 +213,7 @@ void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Tue les puceron
     if (ensP->card > 1)
     {
         ensP->tab[puc->index] = ensP->tab[ensP->card - 1]; // On remplace la puce morte par le dernier puceron du tableau
-        ensP->tab[ensP->card - 1]->index = puc->index;     // On met a jour l'index du puceron déplacé
+        ensP->tab[ensP->card - 1].index = puc->index;     // On met a jour l'index du puceron déplacé
         ensP->card = ensP->card - 1;                       // On met a jour le cardinal
     }
     puc->index = -1;
@@ -218,7 +227,7 @@ void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la repr
     Coordonee emplaNvPuc = caseVideRandPuc(puc->coord.x,puc->coord.y, tab);
     if (!(emplaNvPuc.x == 0 && emplaNvPuc.y == 0)) // Ne cree pas un nouveau puceron si pas d'emplacement vide autour du puceron
     {
-        ajoutPuc(ensP, &nPuceron);
+        ajoutPuc(ensP, nPuceron);
         setCoordPuc(&nPuceron,emplaNvPuc);
         placementPuc(&nPuceron,tab);
     }
