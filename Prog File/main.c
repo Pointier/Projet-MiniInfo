@@ -8,21 +8,29 @@ int main()
     printf("start main\n");
 
     Case potager[N][N];
-    printf("Potager Done\n");
-    initialisationCase(potager, N);
-    printf("Init Case done\n");
+   // printf("Potager Done\n");
+   // initialisationCase(potager, N);
+   // printf("Init Case done\n");
     EnsemblePuc ensP;
-    printf("Ensemble puc done\n");
+   // printf("Ensemble puc done\n");
 
     creaEnsPuc(&ensP);
-    printf("CreaEnsPuc done\n");
+   // printf("CreaEnsPuc done\n");
     int numPucIni=20;
     initEnsemblePuc(&ensP, numPucIni);
-    printf("Init Ensemble Puc done\n");
+    initPlacInsecte(&ensP,potager);
+   // printf("Init Ensemble Puc done\n");
+   printf("Essai avec un puceron hors tableau\n");
+    Puceron try;
+    initPuc(&try);
+    try.coord.x=2;
+    try.coord.y=3;
+    deplacementPuc(&try,potager);
     ensP.tab[0]->coord.x=5;
     ensP.tab[0]->coord.y=10;
     placementPuc(ensP.tab[0],potager);
     printf("Coord puc x: %d y: %d\n",ensP.tab[0]->coord.x,ensP.tab[0]->coord.y);
+    
     deplacementPuc(ensP.tab[0],potager);
 
     initPlacInsecte(&ensP,potager);
