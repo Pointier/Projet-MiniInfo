@@ -108,11 +108,11 @@ Coordonnee decodageDirection(int n)
 
 void directionPuc(Puceron *puc,Case tab[N][N]) // Permet de connaitre la direction du puceron.
 {
-    printf("Direction puceron 0 x %d y %d\n",puc->direction.x,puc->direction.y);
+    printf("Direction puceron debut direct : x= %d y= %d\n",puc->direction.x,puc->direction.y);
     if((puc->direction.x==0 && puc->direction.y==0)||!(presenceTom(puc->direction,tab)))
     {
         puc->direction=selectRandTom(puc->direction,tab);
-        printf("Direction puceron 0 x %d y %d\n",puc->direction.x,puc->direction.y);
+        printf("Direction puceron fin direc %d y %d\n",puc->direction.x,puc->direction.y);
     }
 }
 
@@ -135,6 +135,7 @@ Coordonnee caseVideRandPuc(Coordonnee coord, Case tab[N][N])
     Coordonnee caseVide[8];
     int cVide = 0; // Compteur pour nombre de Coord dans le tableu de case vide
     Coordonnee autourPuc;
+    Coordonnee dir;
     for (int i = -1; i < 2; i++)
     {
         for (int j = -1; j < 2; j++)
@@ -147,7 +148,9 @@ Coordonnee caseVideRandPuc(Coordonnee coord, Case tab[N][N])
 
                 if (tab[autourPuc.x][autourPuc.y].cocci == NULL && tab[autourPuc.x][autourPuc.y].puc == NULL)
                 {
-                    caseVide[cVide] = autourPuc;
+                    dir.x=i;
+                    dir.y=j;
+                    caseVide[cVide] = dir;
                     cVide++;
                 }
             }
@@ -160,8 +163,8 @@ Coordonnee caseVideRandPuc(Coordonnee coord, Case tab[N][N])
     }
     else // si toutes les cases sont occupés le puceron ne bouge pas
     {
-        autourPuc.x = 0;
-        autourPuc.y = 0;
+        dir.x = 0;
+        dir.y = 0;
         return autourPuc;
     }
 }
@@ -171,6 +174,7 @@ Coordonnee selectRandTom(Coordonnee coord, Case tab[N][N]) // Selectionne une ca
 
     Coordonnee caseTom[8];
     Coordonnee autourPuc;
+    Coordonnee dir;
     bool test;
     int cTom = 0; // Compteur pour nombre de Coord dans le tableau de tomate mure
 
@@ -186,8 +190,10 @@ Coordonnee selectRandTom(Coordonnee coord, Case tab[N][N]) // Selectionne une ca
                 test = presenceTom(autourPuc, tab);
 
                 if (test)
-                {
-                    caseTom[cTom] = autourPuc;
+                {   
+                    dir.x=i;
+                    dir.y=j;
+                    caseTom[cTom] = dir;
                     cTom++;
                 }
             }
