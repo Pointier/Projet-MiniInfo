@@ -16,7 +16,8 @@ typedef struct // Structure stockant des coordonnees en 2D
 typedef struct  // Structure définissant un puceron
 {
     Coordonnee coord; // Position dans le tableau 2D de case
-    Coordonnee precCoord; // Indique les coordonnées du tour précédent
+    Coordonnee direction; // Indique la direction du puceron
+    bool directionChanger;
     int age;         // Si atteint 10, le puceron meurt
     int nourriConse; // Nombre de tours consécutifs où le puceron a mangé
     int index;       // Indique la position du puceron dans la structure ...
@@ -58,18 +59,20 @@ typedef struct
     int etatTomate; // Indique
 } Case;
 
-Puceron* retournPuc(EnsemblePuc *ensP,int i);
 void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Fonction qui vieillit les pucerons et appelle la fonction mort si trop vieux
 void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Tue les puceron et les enleve de la grille.
 Coordonnee caseVideRandPuc(Coordonnee coord,Case tab[N][N]); // Selectionne une case vide autour des pucerons et si pas possible renvoie la position actuelle du puceron.
 void mangeTom(Puceron *puc, Case tab[N][N]); // Fait manger la tomate au puceron si possible
 void placementPuc(Puceron *puc, Case tab[N][N]); // Place le puceron sur la case indiqué
 void deplacementPuc(Puceron *puc, Case tab[N][N]); // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
-Coordonnee directionPuc(Puceron puc); // Permet de connaitre la direction du puceron.
+void directionPuc(Puceron *puc,Case tab[N][N]); // Permet de connaitre la direction du puceron.
 bool presenceTom(Coordonnee coord, Case tab[N][N]); // Permet de savoir si tomate mangeable sur la case.
 Coordonnee selectRandTom(Coordonnee coord, Case tab[N][N]); // attention ne renvoie que qunad pres tomate pour l'instant
 void suppPucCase(Coordonnee coord, Case tab[N][N]); // Supprime le pointeur puceron de la case.
 void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP); // Permet la reproduction d'un nouveau puceron.
 void checkCoord(Coordonnee *coord); // Permet de passer de changer de bord.
+int generationDirection();
+Coordonnee decodageDirection(int n);
+
 
 #endif

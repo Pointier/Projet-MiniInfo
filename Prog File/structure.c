@@ -4,19 +4,12 @@ void initPuc(Puceron *puc)
 {
     puc->coord.x = -1;
     puc->coord.y = -1;
-    puc->precCoord.x = 0;
-    puc->precCoord.y = 0;
+    puc->direction.x = 0;
+    puc->direction.y = 0;
     puc->age = 0;
     puc->nourriConse = 0;
     puc->index = -1;
-}
-Puceron* retournPuc(EnsemblePuc *ensP,int i)
-{
-    Puceron *ptr=NULL;
-    if(i<ensP->card)
-    ptr=&ensP->tab[i];
-    return ptr;
-
+    puc->directionChanger=false;
 }
 
 void setCoordPuc(Puceron *puc, Coordonnee coord)
@@ -28,82 +21,97 @@ void setCoordPuc(Puceron *puc, Coordonnee coord)
 
 void checkCoord(Coordonnee *coord) // Permet de passer de changer de bord.
 {
-    if (coord->x==-1)
-    coord->x=N-1;
-    if(coord->x==N)
-    coord->x=0;
-    if (coord->y==-1)
-    coord->y=N-1;
-    if(coord->y==N)
-    coord->y=0;
-    
+    if (coord->x == -1)
+        coord->x = N - 1;
+    if (coord->x == N)
+        coord->x = 0;
+    if (coord->y == -1)
+        coord->y = N - 1;
+    if (coord->y == N)
+        coord->y = 0;
 }
 
 void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case indiqué
 {
-    printf("Start Placement Puc\n");
-    printf("Info taille %d\n",N);
     tab[puc->coord.x][puc->coord.y].puc = puc;
 }
 
 void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
 {
-    
-    Coordonnee dir;
-    
-    
-    dir = directionPuc(*puc);
-    dir.x = dir.x + puc->coord.x;
-    dir.y = dir.y + puc->coord.y;
 
-    
+    Coordonnee dir;
     checkCoord(&dir);
-    
-    if (presenceTom(dir, tab))
+
+    if (presenceTom(puc->direction, tab))
     {
-        suppPucCase(puc->coord,tab);
-        setCoordPuc(puc,dir);
-        placementPuc(puc, tab); 
+        suppPucCase(puc->coord, tab);
+        setCoordPuc(puc, dir);
+        placementPuc(puc, tab);
     }
-        
+
     else
     {
-        suppPucCase(puc->coord,tab);
-       
-        
-        dir=selectRandTom(puc->coord,tab);
-        setCoordPuc(puc,dir);
-        placementPuc(puc, tab); 
+        suppPucCase(puc->coord, tab);
+        dir = selectRandTom(puc->coord, tab);
+        setCoordPuc(puc, dir);
+        placementPuc(puc, tab);
     }
-    
 }
 
 void suppPucCase(Coordonnee coord, Case tab[N][N]) // Supprime le pointeur puceron de la case.
 {
-    //printf("Ok2\n");
-    //printf("Adresse puc dans suppPucCase : %p\n",puc);
-    //printf("Coord puc in suppPuceCase x: %d y: %d\n",x,y);
     tab[coord.x][coord.y].puc = NULL;
-    
-    
 }
-Coordonnee directionPuc(Puceron puc) // Permet de connaitre la direction du puceron.
+int generationDirection()
 {
-    Coordonnee dir;
-    dir.x=0;
-    dir.y=0;
-    if(puc.precCoord.x!=0)
+    int direction = rand() % 8 + 1;
+    return direction;
+}
+Coordonnee decodageDirection(int n)
+{
+    Coordonnee coord;
+    coord.x = 0;
+    coord.y = 0;
+    switch (n)
     {
-        dir.x = puc.coord.x - puc.precCoord.x;
+    case 1:
+        coord.x = -1;
+        coord.y = -1;
+        break;
+    case 2:
+        coord.x = -1;
+        break;
+    case 3:
+        coord.x = -1;
+        coord.y = 1;
+        break;
+    case 4:
+        coord.y = -1;
+        break;
+    case 5:
+        coord.y = 1;
+        break;
+    case 6:
+        coord.x = 1;
+        coord.y = -1;
+        break;
+    case 7:
+        coord.x = 1;
+        break;
+    case 8:
+        coord.x = 1;
+        coord.y = 1;
+        break;
     }
-    if(puc.precCoord.y!=0)
+    return coord;
+}
+
+void directionPuc(Puceron *puc,Case tab[N][N]) // Permet de connaitre la direction du puceron.
+{
+    if((puc->direction.x==0 && puc->direction.y==0)||!(presenceTom(puc->direction,tab)))
     {
-     dir.y = puc.coord.y - puc.precCoord.y;
+        puc->direction=selectRandTom(puc->direction,tab);
     }
-    
-    checkCoord(&dir);
-    
-    return dir;
 }
 
 bool presenceTom(Coordonnee coord, Case tab[N][N]) // Permet de savoir si tomate mangeable sur la case.
@@ -113,12 +121,11 @@ bool presenceTom(Coordonnee coord, Case tab[N][N]) // Permet de savoir si tomate
     {
         return true;
     }
-        
+
     else
     {
-    return false;
+        return false;
     }
-       
 }
 
 Coordonnee caseVideRandPuc(Coordonnee coord, Case tab[N][N])
@@ -159,8 +166,7 @@ Coordonnee caseVideRandPuc(Coordonnee coord, Case tab[N][N])
 
 Coordonnee selectRandTom(Coordonnee coord, Case tab[N][N]) // Selectionne une case vide autour des pucerons et si pas possible renvoie la position actuelle du puceron.
 {
-    
-    
+
     Coordonnee caseTom[8];
     Coordonnee autourPuc;
     bool test;
@@ -195,26 +201,24 @@ Coordonnee selectRandTom(Coordonnee coord, Case tab[N][N]) // Selectionne une ca
         return caseVideRandPuc(autourPuc, tab);
 }
 
-
-
 void mangeTom(Puceron *puc, Case tab[N][N]) // Fait manger la tomate au puceron si possible
 {
-    
+
     if (tab[puc->coord.x][puc->coord.y].etatTomate >= 5)
     {
         tab[puc->coord.x][puc->coord.y].etatTomate = 1;
-        
+
         puc->nourriConse++;
     }
     else
-    puc->nourriConse=0;
+        puc->nourriConse = 0;
 }
 
 void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Fonction qui vieillit les pucerons et appelle la fonction mort si trop vieux
 {
     puc->age++;
     if (puc->age >= 10)
-        mortPuc(ensP, puc,tab);
+        mortPuc(ensP, puc, tab);
 }
 
 void creaEnsPuc(EnsemblePuc *ensP)
@@ -233,11 +237,11 @@ void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Tue les puceron
     if (ensP->card > 1)
     {
         ensP->tab[puc->index] = ensP->tab[ensP->card - 1]; // On remplace la puce morte par le dernier puceron du tableau
-        ensP->tab[ensP->card - 1].index = puc->index;     // On met a jour l'index du puceron déplacé
+        ensP->tab[ensP->card - 1].index = puc->index;      // On met a jour l'index du puceron déplacé
         ensP->card = ensP->card - 1;                       // On met a jour le cardinal
     }
     puc->index = -1;
-    suppPucCase(puc->coord,tab);
+    suppPucCase(puc->coord, tab);
 }
 
 void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la reproduction d'un nouveau puceron.
@@ -248,7 +252,7 @@ void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la repr
     if (!(emplaNvPuc.x == 0 && emplaNvPuc.y == 0)) // Ne cree pas un nouveau puceron si pas d'emplacement vide autour du puceron
     {
         ajoutPuc(ensP, nPuceron);
-        setCoordPuc(&nPuceron,emplaNvPuc);
-        placementPuc(&nPuceron,tab);
+        setCoordPuc(&nPuceron, emplaNvPuc);
+        placementPuc(&nPuceron, tab);
     }
 }

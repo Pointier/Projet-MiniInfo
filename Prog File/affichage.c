@@ -27,7 +27,30 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
                 else
                 {
                     printf("\033[0;32m");
-                    printf("P");
+                    if ((tab[i][j].puc->direction.x==-1&&tab[i][j].puc->direction.y==-1)||(tab[i][j].puc->direction.x==-1&&tab[i][j].puc->direction.y==-1))
+                    {
+                        printf("\\");
+                    }
+                    else if((tab[i][j].puc->direction.x==-1&&tab[i][j].puc->direction.y==1)||(tab[i][j].puc->direction.x==1&&tab[i][j].puc->direction.y==-1))
+                    {
+                        printf("/");
+                    }
+                    else if (tab[i][j].puc->direction.x==-1&&tab[i][j].puc->direction.y==0)
+                    {
+                        printf("Ʌ");
+                    }
+                    else if (tab[i][j].puc->direction.x==1&&tab[i][j].puc->direction.y==0)
+                    {
+                        printf("V");
+                    }
+                    else if (tab[i][j].puc->direction.x==0&&tab[i][j].puc->direction.y==1)
+                    {
+                        printf(">");
+                    }
+                    else if (tab[i][j].puc->direction.x==0&&tab[i][j].puc->direction.y==-1)
+                    {
+                        printf("<");
+                    }
                 }
             }
             if (j + 1 == taille)
