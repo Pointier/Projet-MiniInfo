@@ -38,11 +38,9 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
 
 void deplacementEnsPuc(EnsemblePuc *ensP, Case tab[N][N])
 {
-    printf("Deplacement Ensemble Puc debut\n");
-    printf("Coord puc x: %d y: %d\n",ensP->tab[0].coord.x,ensP->tab[0].coord.y);
+    printf("Start depla ensemble puc\n");
     for (int i = 0; i < ensP->card; i++)
     {
-        printf("Deplacement  Puc %d\n",i);
         deplacementPuc(&ensP->tab[i], tab);
     }
 }
@@ -60,14 +58,15 @@ void actionPuc(EnsemblePuc *ensP, Case tab[N][N])
 
 void tour(int nbtour,EnsemblePuc *ensP, Case tab [N][N])
 {
-    
     for(int i=0;i<nbtour;i++)
     {
         printf("Tour %d :\n",i);
-        deplacementEnsPuc(ensP,tab);
+        printf("Ok1\n");
+        deplacementEnsPuc(ensP, tab);
         printf("Deplacement Ensemble Puc done\n");
         actionPuc(ensP,tab);
         printf("Action Puc done\n");
         afficher(tab,N);
+        printf("Fin tour\n");
     }
 }

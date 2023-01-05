@@ -4,8 +4,8 @@ void initPuc(Puceron *puc)
 {
     puc->coord.x = -1;
     puc->coord.y = -1;
-    puc->precCoord.x = -1;
-    puc->precCoord.y = -1;
+    puc->precCoord.x = 0;
+    puc->precCoord.y = 0;
     puc->age = 0;
     puc->nourriConse = 0;
     puc->index = -1;
@@ -21,57 +21,58 @@ Puceron* retournPuc(EnsemblePuc *ensP,int i)
 
 void setCoordPuc(Puceron *puc, Coordonnee coord)
 {
-    coord=checkCoord(coord);
+    checkCoord(&coord);
     puc->coord.x = coord.x;
     puc->coord.y = coord.y;
 }
 
-Coordonnee checkCoord(Coordonnee coord) // Permet de passer de changer de bord.
+void checkCoord(Coordonnee *coord) // Permet de passer de changer de bord.
 {
-    if (coord.x==-1)
-    coord.x=N-1;
-    if(coord.x==N)
-    coord.x=0;
-    if (coord.y==-1)
-    coord.y=N-1;
-    if(coord.y==N)
-    coord.y=0;
-    return coord;
+   /* if (coord->x==-1)
+    coord->x=N-1;
+    if(coord->x==N)
+    coord->x=0;
+    if (coord->y==-1)
+    coord->y=N-1;
+    if(coord->y==N)
+    coord->y=0;
+    */
 }
 
 void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case indiqué
 {
-    
-    printf("Coord puc in pla x: %d y: %d\n",puc->coord.x,puc->coord.y);
     tab[puc->coord.x][puc->coord.y].puc = puc;
 }
 
 void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
 {
     
-    //printf("Adresse puc dans depla : %p\n",puc);
     Coordonnee dir;
-    /*dir = directionPuc(puc);
     
+    
+    dir = directionPuc(*puc);
     dir.x = dir.x + puc->coord.x;
     dir.y = dir.y + puc->coord.y;
-    dir=checkCoord(dir);
+
+    
+    checkCoord(&dir);
+    
     if (presenceTom(dir, tab))
     {
-        suppPucCase(puc,tab);
+        suppPucCase(puc->coord,tab);
         setCoordPuc(puc,dir);
         placementPuc(puc, tab); 
     }
         
     else
-    {*/
+    {
         suppPucCase(puc->coord,tab);
-        //printf("Adresse puc dans depla : %p\n",puc);
-        printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
+       
+        
         dir=selectRandTom(puc->coord,tab);
         setCoordPuc(puc,dir);
         placementPuc(puc, tab); 
-   // }
+    }
     
 }
 
@@ -84,21 +85,38 @@ void suppPucCase(Coordonnee coord, Case tab[N][N]) // Supprime le pointeur pucer
     
     
 }
-Coordonnee directionPuc(Puceron *puc) // Permet de connaitre la direction du puceron.
+Coordonnee directionPuc(Puceron puc) // Permet de connaitre la direction du puceron.
 {
     Coordonnee dir;
-    dir.x = puc->coord.x - puc->precCoord.x;
-    dir.y = puc->coord.y - puc->precCoord.y;
-    dir=checkCoord(dir);
+    dir.x=0;
+    dir.y=0;
+    if(puc.precCoord.x!=0)
+    {
+        dir.x = puc.coord.x - puc.precCoord.x;
+    }
+    if(puc.precCoord.y!=0)
+    {
+     dir.y = puc.coord.y - puc.precCoord.y;
+    }
+    
+    checkCoord(&dir);
+    
     return dir;
 }
 
 bool presenceTom(Coordonnee coord, Case tab[N][N]) // Permet de savoir si tomate mangeable sur la case.
 {
+
     if (tab[coord.x][coord.y].etatTomate >= 5 && tab[coord.x][coord.y].cocci == NULL && tab[coord.x][coord.y].puc == NULL)
+    {
         return true;
+    }
+        
     else
-        return false;
+    {
+    return false;
+    }
+       
 }
 
 Coordonnee caseVideRandPuc(Coordonnee coord, Case tab[N][N])
@@ -114,7 +132,7 @@ Coordonnee caseVideRandPuc(Coordonnee coord, Case tab[N][N])
             {
                 autourPuc.x = coord.x + i;
                 autourPuc.y = coord.y + j;
-                autourPuc=checkCoord(autourPuc);
+                checkCoord(&autourPuc);
 
                 if (tab[autourPuc.x][autourPuc.y].cocci == NULL && tab[autourPuc.x][autourPuc.y].puc == NULL)
                 {
@@ -154,7 +172,7 @@ Coordonnee selectRandTom(Coordonnee coord, Case tab[N][N]) // Selectionne une ca
             {
                 autourPuc.x = coord.x + i;
                 autourPuc.y = coord.y + j;
-                autourPuc=checkCoord(autourPuc);
+                checkCoord(&autourPuc);
                 test = presenceTom(autourPuc, tab);
 
                 if (test)

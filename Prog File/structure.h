@@ -65,10 +65,11 @@ Coordonnee caseVideRandPuc(Coordonnee coord,Case tab[N][N]); // Selectionne une 
 void mangeTom(Puceron *puc, Case tab[N][N]); // Fait manger la tomate au puceron si possible
 void placementPuc(Puceron *puc, Case tab[N][N]); // Place le puceron sur la case indiqué
 void deplacementPuc(Puceron *puc, Case tab[N][N]); // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
-Coordonnee directionPuc(Puceron *puc); // Permet de connaitre la direction du puceron.
+Coordonnee directionPuc(Puceron puc); // Permet de connaitre la direction du puceron.
 bool presenceTom(Coordonnee coord, Case tab[N][N]); // Permet de savoir si tomate mangeable sur la case.
 Coordonnee selectRandTom(Coordonnee coord, Case tab[N][N]); // attention ne renvoie que qunad pres tomate pour l'instant
 void suppPucCase(Coordonnee coord, Case tab[N][N]); // Supprime le pointeur puceron de la case.
 void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP); // Permet la reproduction d'un nouveau puceron.
-Coordonnee checkCoord(Coordonnee coord); // Permet de passer de changer de bord.
+void checkCoord(Coordonnee *coord); // Permet de passer de changer de bord.
+
 #endif
