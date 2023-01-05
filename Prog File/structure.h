@@ -65,7 +65,7 @@ void deplacementPuc(Puceron *puc, Case tab[N][N]); // Deplace le puceron soit se
 Coordonee directionPuc(Puceron *puc); // Permet de connaitre la direction du puceron.
 bool presenceTom(Coordonee coord, Case tab[N][N]); // Permet de savoir si tomate mangeable sur la case.
 Coordonee selectRandTom(int x,int y, Case tab[N][N]); // attention ne renvoie que qunad pres tomate pour l'instant
-void suppPucCase(Coordonee coord, Case tab[N][N]); // Supprime le pointeur puceron de la case.
+void suppPucCase(int x,int y, Case tab[N][N]); // Supprime le pointeur puceron de la case.
 void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP); // Permet la reproduction d'un nouveau puceron.
 Coordonee checkCoord(Coordonee coord); // Permet de passer de changer de bord.
 #endif

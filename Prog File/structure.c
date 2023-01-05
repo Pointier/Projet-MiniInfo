@@ -56,7 +56,7 @@ void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit sel
         
     else
     {*/
-        suppPucCase(puc->coord,tab);
+        suppPucCase(puc->coord.x,puc->coord.y,tab);
         printf("Adresse puc dans depla : %p\n",puc);
         printf("Coord puc in depla x: %d y: %d\n",puc->coord.x,puc->coord.y);
         dir=selectRandTom(puc->coord.x,puc->coord.y,tab);
@@ -66,12 +66,12 @@ void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit sel
     
 }
 
-void suppPucCase(Coordonee coord, Case tab[N][N]) // Supprime le pointeur puceron de la case.
+void suppPucCase(int x,int y, Case tab[N][N]) // Supprime le pointeur puceron de la case.
 {
     //printf("Ok2\n");
     //printf("Adresse puc dans suppPucCase : %p\n",puc);
-    printf("Coord puc in suppPuceCase x: %d y: %d\n",coord.x,coord.y);
-    tab[coord.x][coord.y].puc = NULL;
+    printf("Coord puc in suppPuceCase x: %d y: %d\n",x,y);
+    tab[x][y].puc = NULL;
     
     
 }
@@ -206,7 +206,7 @@ void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Tue les puceron
         ensP->card = ensP->card - 1;                       // On met a jour le cardinal
     }
     puc->index = -1;
-    suppPucCase(puc->coord,tab);
+    suppPucCase(puc->coord.x,puc->coord.y,tab);
 }
 
 void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la reproduction d'un nouveau puceron.
