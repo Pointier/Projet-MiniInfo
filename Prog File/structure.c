@@ -236,7 +236,7 @@ void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Fonct
 {
     puc->age++;
     if (puc->age >= 10)
-        mortPuc(ensP, puc, tab);
+        mortPuc(ensP, *puc, tab);
 }
 
 void creaEnsPuc(EnsemblePuc *ensP)
@@ -250,16 +250,16 @@ void ajoutPuc(EnsemblePuc *ensP, Puceron puc)
     puc.index = ensP->card;
     ensP->card++;
 }
-void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]) // Tue les puceron et les enleve de la grille.
+void mortPuc(EnsemblePuc *ensP, Puceron puc, Case tab[N][N]) // Tue les puceron et les enleve de la grille.
 {
-    suppPucCase(puc->coord, tab);
+    suppPucCase(puc.coord, tab);
     if (ensP->card > 1)
     {
-        ensP->tab[puc->index] = ensP->tab[ensP->card - 1]; // On remplace la puce morte par le dernier puceron du tableau
-        ensP->tab[ensP->card - 1].index = puc->index;      // On met a jour l'index du puceron déplacé
+        ensP->tab[puc.index] = ensP->tab[ensP->card - 1]; // On remplace la puce morte par le dernier puceron du tableau
+        ensP->tab[ensP->card - 1].index = puc.index;      // On met a jour l'index du puceron déplacé
     }
     ensP->card = ensP->card - 1;                       // On met a jour le cardinal
-    puc->index = -1;
+    puc.index = -1;
     
 }
 

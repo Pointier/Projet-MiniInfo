@@ -60,7 +60,7 @@ typedef struct
 } Case;
 
 void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Fonction qui vieillit les pucerons et appelle la fonction mort si trop vieux
-void mortPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Tue les puceron et les enleve de la grille.
+void mortPuc(EnsemblePuc *ensP, Puceron puc, Case tab[N][N]); // Tue les puceron et les enleve de la grille.
 Coordonnee caseVideRandPuc(Coordonnee coord,Case tab[N][N]); // Selectionne une case vide autour des pucerons et si pas possible renvoie la position actuelle du puceron.
 void mangeTom(Puceron *puc, Case tab[N][N]); // Fait manger la tomate au puceron si possible
 void placementPuc(Puceron *puc, Case tab[N][N]); // Place le puceron sur la case indiqué
