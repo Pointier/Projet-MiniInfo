@@ -97,10 +97,9 @@ void actionPuc(EnsemblePuc *ensP, Case tab[N][N])
         mangeTom(&ensP->tab[i], tab);
         if (ensP->tab[i].nourriConse == 5)
         {
-            //reproPuc(ensP->tab[i], tab, ensP);
-            reproPuc2(ensP->tab[i].coord,tab,ensP);
+            printf("Debut repro\n");
+             reproPuc(ensP->tab[i], tab, ensP);
             ensP->tab[i].nourriConse = 0;
-            
         }
         // printf("Card %d\n",ensP->card);
         vieillissementPuc(ensP, &ensP->tab[i], tab);

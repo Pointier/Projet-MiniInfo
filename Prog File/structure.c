@@ -38,6 +38,7 @@ void checkCoord(Coordonnee *coord) // Permet de passer de changer de bord.
 void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case indiqué
 {
     
+    printf("Coord puc x %d y %d",puc->coord.x,puc->coord.y);
     checkCoord(&puc->coord);
     tab[puc->coord.x][puc->coord.y].puc = puc;
     printf("Coordo placement puc x %d y %d\n",puc->coord.x,puc->coord.y);
@@ -289,13 +290,5 @@ void reproPuc(Puceron puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la repro
 
 void reproPuc2(Coordonnee coord,Case tab[N][N],EnsemblePuc *ensP)
 {
-    Puceron nPuc;
-    initPuc(&nPuc);
-    nPuc.coord=caseVideRandPuc(coord,tab);
-    
-    nPuc.coord.x=nPuc.coord.x+coord.x;
-    nPuc.coord.y=nPuc.coord.y+coord.y;
-
-    ajoutPuc(ensP,nPuc);
-    placementPuc(&ensP->tab[ensP->card],tab);    
+       
 }
