@@ -263,13 +263,13 @@ void mortPuc(EnsemblePuc *ensP, Puceron puc, Case tab[N][N]) // Tue les puceron 
     
 }
 
-void reproPuc(Puceron *puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la reproduction d'un nouveau puceron.
+void reproPuc(Puceron puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la reproduction d'un nouveau puceron.
 {
     Puceron nPuceron; // Nouveau puceron a a ajouté dans Ensemble Puceron
     initPuc(&nPuceron);
-    Coordonnee emplaNvPuc = caseVideRandPuc(puc->coord, tab);
-    emplaNvPuc.x=emplaNvPuc.x+puc->coord.x;
-    emplaNvPuc.y=emplaNvPuc.y+puc->coord.y;
+    Coordonnee emplaNvPuc = caseVideRandPuc(puc.coord, tab);
+    emplaNvPuc.x=emplaNvPuc.x+puc.coord.x;
+    emplaNvPuc.y=emplaNvPuc.y+puc.coord.y;
     if (!(emplaNvPuc.x == 0 && emplaNvPuc.y == 0)) // Ne cree pas un nouveau puceron si pas d'emplacement vide autour du puceron
     {
         ajoutPuc(ensP, nPuceron);
