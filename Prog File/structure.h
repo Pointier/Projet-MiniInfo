@@ -17,7 +17,7 @@ typedef struct  // Structure définissant un puceron
 {
     Coordonnee coord; // Position dans le tableau 2D de case
     Coordonnee direction; // Indique la direction du puceron
-    bool directionChanger;
+    bool mortPuc;
     int age;         // Si atteint 10, le puceron meurt
     int nourriConse; // Nombre de tours consécutifs où le puceron a mangé
     int index;       // Indique la position du puceron dans la structure ...
@@ -74,4 +74,5 @@ void checkCoord(Coordonnee *coord); // Permet de passer de changer de bord.
 int generationDirection();
 void setCoordPuc(Puceron *puc,Coordonnee coord);
 Coordonnee decodageDirection(int n);
+void reproPuc2(Coordonnee coord,Case tab[N][N],EnsemblePuc *ensP);
 #endif

@@ -2,6 +2,8 @@
 
 void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affiche
 {
+
+    int c = 0;
     printf("Affichage\n");
     for (int i = 0; i < taille; i++)
     {
@@ -26,10 +28,12 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
                 }
                 else
                 {
+
                     printf("\033[0;32m");
+                    /*
                     if ((tab[i][j].puc->direction.x == -1 && tab[i][j].puc->direction.y == -1) || (tab[i][j].puc->direction.x == 1 && tab[i][j].puc->direction.y == 1))
                     {
-                        printf("+");
+                        printf("\\");
                     }
                     else if ((tab[i][j].puc->direction.x == -1 && tab[i][j].puc->direction.y == 1) || (tab[i][j].puc->direction.x == 1 && tab[i][j].puc->direction.y == -1))
                     {
@@ -51,12 +55,17 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
                     {
                         printf("<");
                     }
+                    */
+
+                    printf("P");
+                    c++;
                 }
             }
             if (j + 1 == taille)
                 printf("\n");
         }
     }
+    printf("\nNombre de passage par puceron %d\n", c);
 }
 void pousseTomate(Case tab[N][N])
 {
@@ -81,20 +90,42 @@ void deplacementEnsPuc(EnsemblePuc *ensP, Case tab[N][N])
 
 void actionPuc(EnsemblePuc *ensP, Case tab[N][N])
 {
-    int i=0;
-    while (i<ensP->card)
+    int i = 0;
+    while (i < ensP->card)
     {
-        printf("Nb boucle %d\n",i);
+        // printf("Nb boucle %d\n",i);
         mangeTom(&ensP->tab[i], tab);
         if (ensP->tab[i].nourriConse == 5)
         {
-            reproPuc(ensP->tab[i], tab, ensP);
-            ensP->tab[i].nourriConse =0;
+            //reproPuc(ensP->tab[i], tab, ensP);
+            reproPuc2(ensP->tab[i].coord,tab,ensP);
+            ensP->tab[i].nourriConse = 0;
+            
         }
-        printf("Card %d\n",ensP->card);    
-        //vieillissementPuc(ensP, &ensP->tab[i], tab);
+        // printf("Card %d\n",ensP->card);
+        vieillissementPuc(ensP, &ensP->tab[i], tab);
         directionPuc(&ensP->tab[i], tab);
+        printf("Direction puceron %d x %d y %d\n", i, ensP->tab[i].direction.x, ensP->tab[i].direction.y);
         i++;
+    }
+}
+
+void afficher_v2(Case tab[N][N], int taille) // Prend une matrice carree et l'affiche
+{
+    for (int i = 0; i < taille; i++)
+    {
+        for (int j = 0; j < taille; j++)
+        {
+            if (tab[i][j].puc != NULL)
+            {
+                printf("P ");
+            }
+            else
+            {
+                printf(". ");
+            }
+        }
+        printf("\n");
     }
 }
 
@@ -102,8 +133,8 @@ void tour(int nbtour, EnsemblePuc *ensP, Case tab[N][N])
 {
     for (int i = 0; i < nbtour; i++)
     {
-        printf("Tour %d :\n", i);
-        printf("Ok1\n");
+        printf("\nTour %d :\n", i);
+
         pousseTomate(tab);
         if (i != 0)
         {
@@ -112,8 +143,9 @@ void tour(int nbtour, EnsemblePuc *ensP, Case tab[N][N])
         printf("Deplacement Ensemble Puc done\n");
         actionPuc(ensP, tab);
         printf("Action Puc done\n");
-        afficher(tab, N);
-        printf("Nombre puceron : %d\n",ensP->card);
+        // afficher(tab, N);
+        afficher_v2(tab, N);
+        printf("Nombre puceron : %d\n", ensP->card);
         printf("Fin tour\n");
     }
 }
