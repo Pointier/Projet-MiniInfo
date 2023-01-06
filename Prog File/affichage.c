@@ -27,27 +27,27 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
                 else
                 {
                     printf("\033[0;32m");
-                    if ((tab[i][j].puc->direction.x==-1&&tab[i][j].puc->direction.y==-1)||(tab[i][j].puc->direction.x==-1&&tab[i][j].puc->direction.y==-1))
+                    if ((tab[i][j].puc->direction.x == -1 && tab[i][j].puc->direction.y == -1) || (tab[i][j].puc->direction.x == 1 && tab[i][j].puc->direction.y == 1))
                     {
-                        printf("\\");
+                        printf("+");
                     }
-                    else if((tab[i][j].puc->direction.x==-1&&tab[i][j].puc->direction.y==1)||(tab[i][j].puc->direction.x==1&&tab[i][j].puc->direction.y==-1))
+                    else if ((tab[i][j].puc->direction.x == -1 && tab[i][j].puc->direction.y == 1) || (tab[i][j].puc->direction.x == 1 && tab[i][j].puc->direction.y == -1))
                     {
                         printf("/");
                     }
-                    else if (tab[i][j].puc->direction.x==-1&&tab[i][j].puc->direction.y==0)
+                    else if (tab[i][j].puc->direction.x == -1 && tab[i][j].puc->direction.y == 0)
                     {
                         printf("Ʌ");
                     }
-                    else if (tab[i][j].puc->direction.x==1&&tab[i][j].puc->direction.y==0)
+                    else if (tab[i][j].puc->direction.x == 1 && tab[i][j].puc->direction.y == 0)
                     {
                         printf("V");
                     }
-                    else if (tab[i][j].puc->direction.x==0&&tab[i][j].puc->direction.y==1)
+                    else if (tab[i][j].puc->direction.x == 0 && tab[i][j].puc->direction.y == 1)
                     {
                         printf(">");
                     }
-                    else if (tab[i][j].puc->direction.x==0&&tab[i][j].puc->direction.y==-1)
+                    else if (tab[i][j].puc->direction.x == 0 && tab[i][j].puc->direction.y == -1)
                     {
                         printf("<");
                     }
@@ -60,12 +60,12 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
 }
 void pousseTomate(Case tab[N][N])
 {
-    for(int i=0;i<N;i++)
+    for (int i = 0; i < N; i++)
     {
-        for(int j=0;j<N;j++)
+        for (int j = 0; j < N; j++)
         {
-            if(tab[i][j].etatTomate<20)
-            tab[i][j].etatTomate++;
+            if (tab[i][j].etatTomate < 20)
+                tab[i][j].etatTomate++;
         }
     }
 }
@@ -84,30 +84,33 @@ void actionPuc(EnsemblePuc *ensP, Case tab[N][N])
     for (int i = 0; i < ensP->card; i++)
     {
         mangeTom(&ensP->tab[i], tab);
-        if (ensP->tab[i].nourriConse == 5)
+        /*if (ensP->tab[i].nourriConse == 5)
+        {
             reproPuc(&ensP->tab[i], tab, ensP);
-        vieillissementPuc(ensP, &ensP->tab[i],tab);
-        directionPuc(&ensP->tab[i],tab);
+            ensP->tab[i].nourriConse =0;
+        }*/
+            
+        vieillissementPuc(ensP, &ensP->tab[i], tab);
+        directionPuc(&ensP->tab[i], tab);
     }
 }
 
-void tour(int nbtour,EnsemblePuc *ensP, Case tab [N][N])
+void tour(int nbtour, EnsemblePuc *ensP, Case tab[N][N])
 {
-    for(int i=0;i<nbtour;i++)
+    for (int i = 0; i < nbtour; i++)
     {
-        printf("Tour %d :\n",i);
+        printf("Tour %d :\n", i);
         printf("Ok1\n");
         pousseTomate(tab);
-        if(i!=0)
+        if (i != 0)
         {
             deplacementEnsPuc(ensP, tab);
         }
-        
         printf("Deplacement Ensemble Puc done\n");
-        actionPuc(ensP,tab);
+        actionPuc(ensP, tab);
         printf("Action Puc done\n");
-        printf("Direction puceron %d x %d y %d\n",i,ensP->tab[0].direction.x,ensP->tab[0].direction.y);
-        afficher(tab,N);
+        afficher(tab, N);
+        printf("Nombre puceron : %d\n",ensP->card);
         printf("Fin tour\n");
     }
 }

@@ -41,6 +41,7 @@ void initPlacInsecte(EnsemblePuc *ensP, Case tab[N][N])
         }
         if (nouvCoord)
         {
+            printf("Coordonnee depart tableau : x=%d y=%d\n",coordRand.x,coordRand.y);
             tabCoord[c] = coordRand;
             c++;
         }
@@ -48,6 +49,7 @@ void initPlacInsecte(EnsemblePuc *ensP, Case tab[N][N])
     printf("Taille cardi %d\n",ensP->card);
     for (int i = 0; i < ensP->card; i++)
     {
+        printf("Avant assi : x=%d y=%d\n",tabCoord[0].x,tabCoord[0].y);
         ensP->tab[i].coord = tabCoord[i];
         printf("Compteur placement puc %d\n", i);
         placementPuc(&ensP->tab[i], tab);

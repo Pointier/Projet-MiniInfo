@@ -16,13 +16,13 @@ int main()
     //printf("Ensemble puc done\n");
     creaEnsPuc(&ensP);
     //printf("CreaEnsPuc done\n");
-    int numPucIni = 2;
+    int numPucIni = 1;
     initEnsemblePuc(&ensP, numPucIni);
     //printf("Init Ensemble Puc done\n");
     initPlacInsecte(&ensP, potager);
     //printf("Init Plac Insecte done\n");
 
-    tour(20, &ensP, potager);
+    tour(50, &ensP, potager);
 
     //afficher(potager,N);
     //printf("Affichage Done\n");
