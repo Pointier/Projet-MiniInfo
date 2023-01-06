@@ -81,17 +81,20 @@ void deplacementEnsPuc(EnsemblePuc *ensP, Case tab[N][N])
 
 void actionPuc(EnsemblePuc *ensP, Case tab[N][N])
 {
-    for (int i = 0; i < ensP->card; i++)
+    int i=0;
+    while (i<ensP->card)
     {
+        printf("Nb boucle %d\n",i);
         mangeTom(&ensP->tab[i], tab);
-        /*if (ensP->tab[i].nourriConse == 5)
+        if (ensP->tab[i].nourriConse == 5)
         {
-            reproPuc(&ensP->tab[i], tab, ensP);
+            reproPuc(ensP->tab[i], tab, ensP);
             ensP->tab[i].nourriConse =0;
-        }*/
-            
-        vieillissementPuc(ensP, &ensP->tab[i], tab);
+        }
+        printf("Card %d\n",ensP->card);    
+        //vieillissementPuc(ensP, &ensP->tab[i], tab);
         directionPuc(&ensP->tab[i], tab);
+        i++;
     }
 }
 

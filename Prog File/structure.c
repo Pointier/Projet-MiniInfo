@@ -40,7 +40,7 @@ void placementPuc(Puceron *puc, Case tab[N][N]) // Place le puceron sur la case 
 
     checkCoord(&puc->coord);
     tab[puc->coord.x][puc->coord.y].puc = puc;
-    printf("Coordo placement puc x %d y %d",puc->coord.x,puc->coord.y);
+ //   printf("Coordo placement puc x %d y %d",puc->coord.x,puc->coord.y);
 }
 
 void deplacementPuc(Puceron *puc, Case tab[N][N]) // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
@@ -252,12 +252,13 @@ void ajoutPuc(EnsemblePuc *ensP, Puceron puc)
 }
 void mortPuc(EnsemblePuc *ensP, Puceron puc, Case tab[N][N]) // Tue les puceron et les enleve de la grille.
 {
+    //printf("Pointeur %p",tab[puc.coord.x][puc.coord.y].puc);
     suppPucCase(puc.coord, tab);
-    if (ensP->card > 1)
-    {
-        ensP->tab[puc.index] = ensP->tab[ensP->card - 1]; // On remplace la puce morte par le dernier puceron du tableau
-        ensP->tab[ensP->card - 1].index = puc.index;      // On met a jour l'index du puceron déplacé
-    }
+    //printf("Pointeur %p",tab[puc.coord.x][puc.coord.y].puc);
+    
+    ensP->tab[puc.index] = ensP->tab[ensP->card - 1]; // On remplace la puce morte par le dernier puceron du tableau
+    ensP->tab[ensP->card - 1].index = puc.index;      // On met a jour l'index du puceron déplacé
+    
     ensP->card = ensP->card - 1;                       // On met a jour le cardinal
     puc.index = -1;
     
@@ -265,6 +266,10 @@ void mortPuc(EnsemblePuc *ensP, Puceron puc, Case tab[N][N]) // Tue les puceron 
 
 void reproPuc(Puceron puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la reproduction d'un nouveau puceron.
 {
+    printf("Naissance\n");
+    printf("Card : %d\n",ensP->card);
+    if(ensP->card<NB_PUC)
+    {
     Puceron nPuceron; // Nouveau puceron a a ajouté dans Ensemble Puceron
     initPuc(&nPuceron);
     Coordonnee emplaNvPuc = caseVideRandPuc(puc.coord, tab);
@@ -276,4 +281,7 @@ void reproPuc(Puceron puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la repro
         setCoordPuc(&nPuceron, emplaNvPuc);
         placementPuc(&nPuceron, tab);
     }
+    }
+    printf("Card : %d\n",ensP->card);
+    
 }
