@@ -1,6 +1,8 @@
 #include "initialisation.h"
 
-void initialisationCase(Case tab[N][N], int taille) // Initialise l'ensemble de la grille avec des tomates mures et met le pointeur null pour indiquer l'absence de puceron et coccinnelle
+void initialisationCase(Case tab[N][N], int taille)
+// Initialise l'ensemble de la grille avec des tomates mures et met
+// le pointeur null pour indiquer l'absence de puceron et coccinelle
 {
     printf("init\n");
     for (int i = 0; i < taille; i++)
@@ -14,7 +16,8 @@ void initialisationCase(Case tab[N][N], int taille) // Initialise l'ensemble de 
     }
 }
 
-void initEnsemblePuc(EnsemblePuc *ensP, int numPuc) // Cree et initialise l'ensemble des puceron dans le tableau
+void initEnsemblePuc(EnsemblePuc *ensP, int numPuc)
+// Cree et initialise l'ensemble des puceron dans le tableau
 {
     for (int i = 0; i < numPuc; i++)
     {
@@ -24,11 +27,13 @@ void initEnsemblePuc(EnsemblePuc *ensP, int numPuc) // Cree et initialise l'ense
     }
 }
 
-void initPlacInsecte(EnsemblePuc *ensP, EnsembleCocci *ensC,  Case tab[N][N]) // Place tout les insectes sur la grille
+void initPlacInsecte(EnsemblePuc *ensP, Case tab[N][N])
+// Place tout les insectes sur la grille
 {
-    Coordonnee tabCoord[ensP->card+ensC->card]; // Cree un tableau de coordonnees contenant le nombre de puceron et coccinelle
-    int c = 0;                      // Compteur du nombre de coordonnée dans le tableau
-    while (c < ensP->card +ensC->card) // Boucle while permettant de generer un ensemble de coordonnee differentes
+    // On aurais rajouté les coccinelles dans le tableau de coordonnee (pour la taille) mais comme on ne les a pas implementés.
+    Coordonnee tabCoord[ensP->card]; // Cree un tableau de coordonnees contenant le nombre de puceron et coccinelle
+    int c = 0;                       // Compteur du nombre de coordonnée dans le tableau
+    while (c < ensP->card)           // Boucle while permettant de generer un ensemble de coordonnee differentes
     {
         bool nouvCoord = true; //
         Coordonnee coordRand;
@@ -39,7 +44,7 @@ void initPlacInsecte(EnsemblePuc *ensP, EnsembleCocci *ensC,  Case tab[N][N]) //
             if (coordRand.x == tabCoord[i].x && coordRand.y == tabCoord[i].y)
                 nouvCoord = false;
         }
-        if (nouvCoord) 
+        if (nouvCoord)
         {
             tabCoord[c] = coordRand;
             c++;
@@ -49,7 +54,7 @@ void initPlacInsecte(EnsemblePuc *ensP, EnsembleCocci *ensC,  Case tab[N][N]) //
     for (int i = 0; i < ensP->card; i++) // Assigne a chaque insecte une coordonnee
     {
         ensP->tab[i].coord = tabCoord[i];
-        placementPuc(&ensP->tab[i], tab); 
+        placementPuc(&ensP->tab[i], tab);
     }
     // On aurais rajoute une boucle pour assigner les positions aux coccinelles.
 }

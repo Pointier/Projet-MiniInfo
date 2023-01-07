@@ -30,7 +30,7 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
                 {
 
                     printf("\033[0;32m");
-    
+
                     if ((tab[i][j].puc->direction.x == -1 && tab[i][j].puc->direction.y == -1) || (tab[i][j].puc->direction.x == 1 && tab[i][j].puc->direction.y == 1))
                     {
                         printf("\\");
@@ -55,7 +55,7 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
                     {
                         printf("<");
                     }
-                    
+
                     c++;
                 }
             }
@@ -93,7 +93,7 @@ void actionPuc(EnsemblePuc *ensP, Case tab[N][N]) // Execute toutes les actions 
         mangeTom(&ensP->tab[i], tab);
         if (ensP->tab[i].nourriConse == 5)
         {
-             reproPuc(ensP->tab[i], tab, ensP);
+            reproPuc(ensP->tab[i], tab, ensP);
             ensP->tab[i].nourriConse = 0;
         }
         vieillissementPuc(ensP, &ensP->tab[i], tab);
@@ -106,7 +106,7 @@ void tour(int nbtour, EnsemblePuc *ensP, Case tab[N][N]) // Gere les tours
 {
     for (int i = 0; i < nbtour; i++)
     {
-        printf("\nTour : %d\n ",i);
+        printf("\nTour : %d\n ", i);
         pousseTomate(tab);
         if (i != 0) // Ne deplace pas les insectes au premier tour.
         {

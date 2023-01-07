@@ -213,7 +213,7 @@ void mortPuc(EnsemblePuc *ensP, Puceron puc, Case tab[N][N]) // Tue les puceron 
 void reproPuc(Puceron puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la reproduction d'un nouveau puceron.
 {
     Coordonnee emplaNvPuc = caseVideRandPuc(puc.coord, tab); // Verifie et choisit une case vide autour du puceron(parent);
-    if (!(emplaNvPuc.x == 0 && emplaNvPuc.y == 0)) // Ne cree pas un nouveau puceron si pas d'emplacement vide autour du puceron
+    if (!(emplaNvPuc.x == 0 && emplaNvPuc.y == 0))           // Ne cree pas un nouveau puceron si pas d'emplacement vide autour du puceron
     {
         if (ensP->card < NB_PUC) // Si le tableau de puceron n'est pas plein ajoute un puceron
         {
