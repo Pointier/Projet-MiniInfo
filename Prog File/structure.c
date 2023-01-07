@@ -277,6 +277,8 @@ void reproPuc(Puceron puc, Case tab[N][N], EnsemblePuc *ensP) // Permet la repro
     Puceron nPuceron; // Nouveau puceron a a ajouté dans Ensemble Puceron
     initPuc(&nPuceron);
     Coordonnee emplaNvPuc = caseVideRandPuc(puc.coord, tab);
+    printf("Coordonne parent x %d y %d\n",puc.coord.x,puc.coord.y);
+    printf("Coordonne changement enfant x %d y %d\n",emplaNvPuc.x,emplaNvPuc.y);
     emplaNvPuc.x=emplaNvPuc.x+puc.coord.x;
     emplaNvPuc.y=emplaNvPuc.y+puc.coord.y;
     ajoutPuc(ensP, nPuceron);
