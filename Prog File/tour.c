@@ -1,17 +1,14 @@
-#include "affichage.h"
+#include "tour.h"
 
 void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affiche
 {
-
-    int c = 0;
-    printf("Affichage\n");
     for (int i = 0; i < taille; i++)
     {
         for (int j = 0; j < taille; j++)
         {
             if (tab[i][j].puc == NULL && tab[i][j].cocci == NULL)
             {
-                printf("\033[1;37m");
+                printf("\033[1;37m"); // Permet de changer la couleur afficher par printf
 
                 if (tab[i][j].etatTomate >= 1 && tab[i][j].etatTomate <= 4)
                     printf(".");
@@ -30,7 +27,7 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
                 {
 
                     printf("\033[0;32m");
-
+                    // Affiche les puceron selon leurs coordonnees de directions
                     if ((tab[i][j].puc->direction.x == -1 && tab[i][j].puc->direction.y == -1) || (tab[i][j].puc->direction.x == 1 && tab[i][j].puc->direction.y == 1))
                     {
                         printf("\\");
@@ -55,11 +52,9 @@ void afficher(Case tab[N][N], int taille) // Prend une matrice carree et l'affic
                     {
                         printf("<");
                     }
-
-                    c++;
                 }
             }
-            if (j + 1 == taille)
+            if (j + 1 == taille) // Changement de ligne
                 printf("\n");
         }
     }

@@ -1,6 +1,4 @@
-#include "structure.h"
-#include "affichage.h"
-#include "initialisation.h"
+#include "tour.h"
 
 int main()
 {
@@ -11,9 +9,9 @@ int main()
     Case potager[N][N];             // Cree le potager
     initialisationCase(potager, N); // initialise le potager
 
-    EnsemblePuc ensP;  // Cree l'ensemble contenant les puceron
-    creaEnsPuc(&ensP); // Initialise l'ensemble contenant les pucerons
-    int numPucIni = 1;
+    EnsemblePuc ensP;                  // Cree l'ensemble contenant les puceron
+    creaEnsPuc(&ensP);                 // Initialise l'ensemble contenant les pucerons
+    int numPucIni = 20;                // Nombre de pucerons initiaux
     initEnsemblePuc(&ensP, numPucIni); // Crre et ajoute 20 pucerons à l'ensemble
 
     initPlacInsecte(&ensP, potager); // Place les insectes dans le potager.

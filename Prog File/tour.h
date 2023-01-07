@@ -1,5 +1,5 @@
-#ifndef HEADER_AFFICHAGE
-#define HEADER_AFFICHAGE
+#ifndef HEADER_TOUR
+#define HEADER_TOUR
 #include "initialisation.h"
 
 void afficher(Case tab[N][N], int taille); // Prend une matrice carree et l'affiche
