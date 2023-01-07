@@ -5,27 +5,20 @@
 int main()
 {
     printf("start main\n");
-    //printf("Taille N : %d \n",N);
-    time_t t;
-    srand((unsigned) time(&t));
-    Case potager[N][N];
-    // printf("Potager Done\n");
-    initialisationCase(potager, N);
-    //printf("Init Case done\n");
-    EnsemblePuc ensP;
-    //printf("Ensemble puc done\n");
-    creaEnsPuc(&ensP);
-    //printf("CreaEnsPuc done\n");
-    int numPucIni = 1;
-    initEnsemblePuc(&ensP, numPucIni);
-    //printf("Init Ensemble Puc done\n");
-    initPlacInsecte(&ensP, potager);
-    //printf("Init Plac Insecte done\n");
+    time_t t; 
+    srand((unsigned) time(&t)); // Initialise time pour les seed de la fonction random
+   
+    Case potager[N][N]; // Cree le potager
+    initialisationCase(potager, N); // initialise le potager
+   
+    EnsemblePuc ensP; // Cree l'ensemble contenant les puceron
+    creaEnsPuc(&ensP);// Initialise l'ensemble contenant les pucerons
+    int numPucIni = 20;
+    initEnsemblePuc(&ensP, numPucIni); // Crre et ajoute 20 pucerons à l'ensemble
 
-    tour(8, &ensP, potager);
+    initPlacInsecte(&ensP, potager); // Place les insectes dans le potager.
 
-    //afficher(potager,N);
-    //printf("Affichage Done\n");
+    tour(50, &ensP, potager); //Gestion des tours
 
     printf("end main\n");
     return 0;

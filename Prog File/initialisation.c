@@ -1,6 +1,6 @@
 #include "initialisation.h"
 
-void initialisationCase(Case tab[N][N], int taille)
+void initialisationCase(Case tab[N][N], int taille) // Initialise l'ensemble de la grille avec des tomates mures et met le pointeur null pour indiquer l'absence de puceron et coccinnelle
 {
     printf("init\n");
     for (int i = 0; i < taille; i++)
@@ -14,7 +14,7 @@ void initialisationCase(Case tab[N][N], int taille)
     }
 }
 
-void initEnsemblePuc(EnsemblePuc *ensP, int numPuc)
+void initEnsemblePuc(EnsemblePuc *ensP, int numPuc) // Cree et initialise l'ensemble des puceron dans le tableau
 {
     for (int i = 0; i < numPuc; i++)
     {
@@ -24,34 +24,32 @@ void initEnsemblePuc(EnsemblePuc *ensP, int numPuc)
     }
 }
 
-void initPlacInsecte(EnsemblePuc *ensP, Case tab[N][N])
+void initPlacInsecte(EnsemblePuc *ensP, EnsembleCocci *ensC,  Case tab[N][N]) // Place tout les insectes sur la grille
 {
-    Coordonnee tabCoord[ensP->card]; // Penser a rajouter le nombre de coccinelle;
+    Coordonnee tabCoord[ensP->card+ensC->card]; // Cree un tableau de coordonnees contenant le nombre de puceron et coccinelle
     int c = 0;                      // Compteur du nombre de coordonnée dans le tableau
-    while (c < ensP->card)
+    while (c < ensP->card +ensC->card) // Boucle while permettant de generer un ensemble de coordonnee differentes
     {
         bool nouvCoord = true; //
         Coordonnee coordRand;
         coordRand.x = rand() % (N - 1);
         coordRand.y = rand() % (N - 1);
-        for (int i = 0; i < c; i++)
+        for (int i = 0; i < c; i++) // Parcourt le tableau pour verifier que les coordonnees nouvellement creer sont bien differentes des autres
         {
             if (coordRand.x == tabCoord[i].x && coordRand.y == tabCoord[i].y)
                 nouvCoord = false;
         }
-        if (nouvCoord)
+        if (nouvCoord) 
         {
-            printf("Coordonnee depart tableau : x=%d y=%d\n",coordRand.x,coordRand.y);
             tabCoord[c] = coordRand;
             c++;
         }
     }
-    printf("Taille cardi %d\n",ensP->card);
-    for (int i = 0; i < ensP->card; i++)
+
+    for (int i = 0; i < ensP->card; i++) // Assigne a chaque insecte une coordonnee
     {
-        printf("Avant assi : x=%d y=%d\n",tabCoord[0].x,tabCoord[0].y);
         ensP->tab[i].coord = tabCoord[i];
-        printf("Compteur placement puc %d\n", i);
-        placementPuc(&ensP->tab[i], tab);
+        placementPuc(&ensP->tab[i], tab); 
     }
+    // On aurais rajoute une boucle pour assigner les positions aux coccinelles.
 }

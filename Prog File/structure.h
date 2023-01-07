@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define N 8
-#define NB_PUC 100
-#define NB_COCCI 100
+#define N 30
+#define NB_PUC 900
+#define NB_COCCI 900
 
 typedef struct // Structure stockant des coordonnees en 2D
 {
@@ -28,18 +28,18 @@ typedef struct  // Structure définissant un puceron
 void initPuc(Puceron *puc); // Fonction permettant d'initier un puceron avec des parametre de base et avec des coordonnées en dehors de la matrice.
 
 
-typedef struct
+typedef struct // Structure contenant les pucerons et l'index permettant de savoir combien il y a de puceron.
 {
     Puceron tab[NB_PUC];
     int card; // Indique le nombre de puceron dans le tableau
-} EnsemblePuc;
+} EnsemblePuc; 
 
 
 
-void creaEnsPuc(EnsemblePuc *ensP);
-void ajoutPuc(EnsemblePuc *ensP, Puceron puc);
+void creaEnsPuc(EnsemblePuc *ensP); // Initialise le cardinal 
+void ajoutPuc(EnsemblePuc *ensP, Puceron puc); // Rajoute un puceron dans l'ensemble puceron
 
-typedef struct
+typedef struct // Structure Coccinelle 
 {
     Coordonnee coord;  // Position dans le tableau 2D de case
     int age;          // Si atteint 20, la coccinelle meurt
@@ -47,19 +47,21 @@ typedef struct
     int index;        // Indique la position de la coccinelle dans la structure ...
 } Coccinelle;
 
-typedef struct
+typedef struct // Structure contenant les coccinelles et l'index permettant de savoir combien il y a de coccinelles.
 {
-
+    Coccinelle tab[NB_COCCI];
+    int card; // Indique le nombre de puceron dans le tableau
 } EnsembleCocci;
 
-typedef struct
+typedef struct // Structure permettant de simuler un potager, contient un pointeur vers coccinelle ou puceron pour savoir ou il sont.
+// Contient aussi un int pour simuler une tomate.
 {
     Puceron *puc;
     Coccinelle *cocci;
-    int etatTomate; // Indique
+    int etatTomate; 
 } Case;
 
-void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Fonction qui vieillit les pucerons et appelle la fonction mort si trop vieux
+void vieillissementPuc(EnsemblePuc *ensP, Puceron *puc, Case tab[N][N]); // Fonction qui vieillit les pucerons et appelle la fonction mortPuc si trop vieux
 void mortPuc(EnsemblePuc *ensP, Puceron puc, Case tab[N][N]); // Tue les puceron et les enleve de la grille.
 Coordonnee caseVideRandPuc(Coordonnee coord,Case tab[N][N]); // Selectionne une case vide autour des pucerons et si pas possible renvoie la position actuelle du puceron.
 void mangeTom(Puceron *puc, Case tab[N][N]); // Fait manger la tomate au puceron si possible
@@ -67,12 +69,9 @@ void placementPuc(Puceron *puc, Case tab[N][N]); // Place le puceron sur la case
 void deplacementPuc(Puceron *puc, Case tab[N][N]); // Deplace le puceron soit selon direction precedente soit Tomate random autour si possible.
 void directionPuc(Puceron *puc,Case tab[N][N]); // Permet de connaitre la direction du puceron.
 bool presenceTom(Coordonnee coord, Case tab[N][N]); // Permet de savoir si tomate mangeable sur la case.
-Coordonnee selectRandTom(Coordonnee coord, Case tab[N][N]); // attention ne renvoie que qunad pres tomate pour l'instant
+Coordonnee selectRandTom(Coordonnee coord, Case tab[N][N]); // Selection une tomate mure random autour du puceron
 void suppPucCase(Coordonnee coord, Case tab[N][N]); // Supprime le pointeur puceron de la case.
 void reproPuc(Puceron puc, Case tab[N][N], EnsemblePuc *ensP); // Permet la reproduction d'un nouveau puceron.
-void checkCoord(Coordonnee *coord); // Permet de passer de changer de bord.
-int generationDirection();
-void setCoordPuc(Puceron *puc,Coordonnee coord);
-Coordonnee decodageDirection(int n);
-void reproPuc2(Coordonnee coord,Case tab[N][N],EnsemblePuc *ensP);
+void checkCoord(Coordonnee *coord); // Permet de supprimer les bordure
+void setCoordPuc(Puceron *puc,Coordonnee coord); // Permet de modifier les coordonnees d'un puceron.
 #endif
